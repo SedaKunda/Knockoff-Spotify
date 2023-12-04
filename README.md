@@ -1,7 +1,3 @@
-## Objective
-
-SaltPay is branching into the music business and needs a new Flutter app.
-
 ## Brief
 
 This Kotlin app needs to display the top 100 songs based on the iTunes API.
