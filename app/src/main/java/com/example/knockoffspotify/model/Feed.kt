@@ -1,6 +1,11 @@
 package com.example.knockoffspotify.model
 
 import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
+
+data class Albums(
+    val feed: Feed
+)
 
 data class Feed(
     val author: Author,
@@ -28,24 +33,24 @@ data class Uri(
 
 data class Entry(
     @SerializedName("im:name")
-    val imName: ImName? = null,
+    val imName: ImName,
     @SerializedName("im:image")
-    val imImage: List<ImImage>? = null,
+    val imImage: List<ImImage>,
     @SerializedName("im:itemCount")
-    val imItemCount: ImItemCount? = null,
+    val imItemCount: ImItemCount,
     @SerializedName("im:price")
-    val imPrice: ImPrice? = null,
+    val imPrice: ImPrice,
     @SerializedName("im:contentType")
-    val imContentType: ImContentType? = null,
-    val rights: Rights? = null,
-    val title: Title? = null,
-    val link: Link? = null,
-    val id: Id? = null,
+    val imContentType: ImContentType,
+    val rights: Rights,
+    val title: Title,
+    val link: Link,
+    val id: Id,
     @SerializedName("im:artist")
-    val imArtist: ImArtist? = null,
-    val category: Category? = null,
+    val imArtist: ImArtist,
+    val category: Category,
     @SerializedName("im:releaseDate")
-    val imReleaseDate: ImReleaseDate? = null,
+    val imReleaseDate: ImReleaseDate,
 )
 
 data class ImName(
@@ -70,26 +75,30 @@ data class ImPrice(
     val attributes: Attributes2,
 )
 
+
+@SerialName("attributes")
 data class Attributes2(
     val amount: String,
     val currency: String,
 )
 
 data class ImContentType(
-//    @JsonProperty("im:contentType")
     val imContentType: ImContentType2,
     val attributes: Attributes4,
 )
 
+@SerialName("im:contentType")
 data class ImContentType2(
     val attributes: Attributes3,
 )
 
+@SerialName("attributes")
 data class Attributes3(
     val term: String,
     val label: String,
 )
 
+@SerialName("attributes")
 data class Attributes4(
     val term: String,
     val label: String,
@@ -107,6 +116,7 @@ data class Link(
     val attributes: Attributes5,
 )
 
+@SerialName("attributes")
 data class Attributes5(
     val rel: String,
     val type: String,
@@ -118,16 +128,18 @@ data class Id(
     val attributes: Attributes6,
 )
 
+@SerialName("attributes")
 data class Attributes6(
-//    @JsonProperty("im:id")
+    @SerializedName("im:id")
     val imId: String,
 )
 
 data class ImArtist(
     val label: String,
-    val attributes: Attributes7? = null,
+    val attributes: Attributes7,
 )
 
+@SerialName("attributes")
 data class Attributes7(
     val href: String,
 )
@@ -136,6 +148,7 @@ data class Category(
     val attributes: Attributes8,
 )
 
+@SerialName("attributes")
 data class Attributes8(
     @SerializedName("im:id")
     val imId: String,
@@ -146,9 +159,10 @@ data class Attributes8(
 
 data class ImReleaseDate(
     val label: String,
-    val attributes: Attributes9? = null,
+    val attributes: Attributes9,
 )
 
+@SerialName("attributes")
 data class Attributes9(
     val label: String,
 )
@@ -157,10 +171,12 @@ data class Updated(
     val label: String,
 )
 
+@SerialName("rights")
 data class Rights2(
     val label: String,
 )
 
+@SerialName("title")
 data class Title2(
     val label: String,
 )
@@ -169,16 +185,20 @@ data class Icon(
     val label: String,
 )
 
+@SerialName("link")
 data class Link2(
     val attributes: Attributes10,
 )
 
+
+@SerialName("attributes")
 data class Attributes10(
     val rel: String,
-    val type: String? = null,
+    val type: String,
     val href: String,
 )
 
+@SerialName("id")
 data class Id2(
     val label: String,
 )
