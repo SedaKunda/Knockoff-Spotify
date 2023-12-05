@@ -1,20 +1,24 @@
 ## Brief
 
-This Kotlin app needs to display the top 100 songs based on the iTunes API.
+This Kotlin app needs to display the top 100 songs based on the iTunes API. The JSON feed is here: https://itunes.apple.com/us/rss/topalbums/limit=100/json
 
-## Tasks
+## Features to be implemented
 
-- Show top 100 albums based on the json feed here: https://itunes.apple.com/us/rss/topalbums/limit=100/json
-- A clean modern look
-- A good user experience
+- Show top 100 albums based on the json feed here: 
 - Allow the top 100 to be searchable
-- Additional features: advanced search, integration with other API, a "Favorite" functionality
+- Advanced search 
+- A "Favorite" functionality
+- Sorting display
+- View more details when clicked
 
-## Evaluation Criteria
+## Screenshots
 
-- best practices: code structure, architecture, state management, etc.
-- Show us your work through your commit history
-- Completeness: did you complete the features?
-- Correctness: does the functionality act in sensible, thought-out ways?
-- Maintainability: is it written in a clean, maintainable way?
-- Testing: is the system adequately tested?
+## Installation guide
+
+## Tech stack
+- Jetpack Compose
+- Dagger Hilt
+- Material Design 3
+- Retrofit
+- Kotlin Coroutines
+- Target SDK: 32
