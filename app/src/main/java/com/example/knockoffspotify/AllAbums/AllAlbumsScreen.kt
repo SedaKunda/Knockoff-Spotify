@@ -12,7 +12,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.knockoffspotify.ViewState
+import com.example.knockoffspotify.components.ViewState
 import com.example.knockoffspotify.model.Entry
 
 @Composable

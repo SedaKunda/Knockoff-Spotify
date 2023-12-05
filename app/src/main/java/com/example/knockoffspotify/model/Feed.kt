@@ -3,7 +3,7 @@ package com.example.knockoffspotify.model
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.SerialName
 
-data class Albums(
+data class TopAlbums(
     val feed: Feed
 )
 
