@@ -100,6 +100,7 @@ dependencies {
 
     // Unit tests
     testImplementation("junit:junit")
+    testImplementation ("io.mockk:mockk:1.13.3")
 
     // UI Tests
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
