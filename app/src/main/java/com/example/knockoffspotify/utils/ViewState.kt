@@ -1,4 +1,4 @@
-package com.example.knockoffspotify
+package com.example.knockoffspotify.utils
 
 import com.example.knockoffspotify.model.Entry
 

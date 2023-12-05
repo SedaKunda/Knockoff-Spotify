@@ -17,6 +17,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.knockoffspotify.R
 import com.example.knockoffspotify.model.Entry
+import com.example.knockoffspotify.utils.toReadableDate
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -50,7 +51,7 @@ fun AlbumCard(album: Entry, modifier: Modifier = Modifier) {
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
-                    text = album.imReleaseDate.label,
+                    text = album.imReleaseDate.label.toReadableDate(),
                     modifier = Modifier.padding(top = 16.dp),
                     style = MaterialTheme.typography.bodySmall
                 )
