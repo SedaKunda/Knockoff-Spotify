@@ -1,6 +1,6 @@
 package com.example.knockoffspotify.di
 
-import com.example.knockoffspotify.FeedApiService
+import com.example.knockoffspotify.data.remote.FeedApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,6 +19,7 @@ object NetworkModule {
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(provideLoggingInterceptor())
             .build()
     }
 

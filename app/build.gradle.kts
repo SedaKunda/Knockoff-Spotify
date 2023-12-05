@@ -107,10 +107,8 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit")
     androidTestImplementation("androidx.test.espresso:espresso-core")
 
-    // Integration with LiveData
-    // implementation("androidx.compose.runtime:runtime-livedata")
-    // Integration with RxJava
-    // implementation("androidx.compose.runtime:runtime-rxjava2")
+    // serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
 
     // Optional - Included automatically by material, only add when you need
     // the icons but not the material library (e.g. when using Material3 or a
