@@ -1,9 +1,9 @@
-package com.example.knockoffspotify.AllAbums
+package com.example.knockoffspotify.all_abums
 
 import app.cash.turbine.test
-import com.example.knockoffspotify.MainCoroutineRule
 import com.example.knockoffspotify.data.TestDatasource
 import com.example.knockoffspotify.data.remote.FeedApiService
+import com.example.knockoffspotify.helpers.MainCoroutineRule
 import com.example.knockoffspotify.model.TopAlbums
 import com.example.knockoffspotify.utils.ViewState
 import io.mockk.coEvery
@@ -44,6 +44,26 @@ class AllAlbumsViewModelTest {
     fun `can return error state when getAlbums fails`() = testCoroutineRule.runTest {
         // given
         val fetchAlbumsService = mockk<FeedApiService>()
+        val fetchAlbumsFromApiTest = FetchAlbumsFromApi(fetchAlbumsService)
+        val testSubject = AllAlbumsViewModel(fetchAlbumsFromApi = fetchAlbumsFromApiTest)
+
+        // when
+        testSubject.getAlbums()
+
+        //then
+        testSubject.state.test {
+            assertEquals(ViewState.Loading, awaitItem())
+            assertEquals(ViewState.Error, awaitItem())
+        }
+    }
+
+    @Test
+    fun `can return error state when entry value is null`() = testCoroutineRule.runTest {
+        // given
+        val feed = TestDatasource().getFeed().copy(entry = listOf())
+        val fetchAlbumsService = mockk<FeedApiService> {
+            coEvery { getTopAlbums() } returns TopAlbums(feed = feed)
+        }
         val fetchAlbumsFromApiTest = FetchAlbumsFromApi(fetchAlbumsService)
         val testSubject = AllAlbumsViewModel(fetchAlbumsFromApi = fetchAlbumsFromApiTest)
 

@@ -13,8 +13,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.knockoffspotify.AllAbums.AlbumCard
-import com.example.knockoffspotify.AllAbums.AllAlbumsScreen
+import com.example.knockoffspotify.all_abums.AlbumCard
+import com.example.knockoffspotify.all_abums.AllAlbumsScreen
 import com.example.knockoffspotify.data.Datasource
 import com.example.knockoffspotify.ui.theme.KnockoffSpotifyTheme
 import dagger.hilt.android.AndroidEntryPoint

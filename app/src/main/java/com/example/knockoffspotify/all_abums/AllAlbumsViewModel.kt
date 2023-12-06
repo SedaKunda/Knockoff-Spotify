@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.AllAbums
+package com.example.knockoffspotify.all_abums
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,8 +17,18 @@ class AllAlbumsViewModel @Inject constructor(val fetchAlbumsFromApi: FetchAlbums
     fun getAlbums() {
         viewModelScope.launch {
             try {
-                val latestAlbums = fetchAlbumsFromApi()
-                _state.value = ViewState.Success(entries = latestAlbums)
+                fetchAlbumsFromApi.fetchAlbums().collect { viewState ->
+                    _state.emit(
+                        when (viewState) {
+                            ViewState.Error -> ViewState.Error
+                            ViewState.Loading -> ViewState.Loading
+                            is ViewState.Success -> {
+                                if (viewState.entries.isEmpty()) ViewState.Error
+                                else ViewState.Success(entries = viewState.entries)
+                            }
+                        }
+                    )
+                }
             }
             catch (e: Exception) {
                 _state.value = ViewState.Error

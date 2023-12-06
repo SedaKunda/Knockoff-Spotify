@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.AllAbums
+package com.example.knockoffspotify.all_abums
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

@@ -1,4 +1,4 @@
-package com.example.knockoffspotify
+package com.example.knockoffspotify.helpers
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
