@@ -21,8 +21,10 @@ This Kotlin app needs to display the top 100 songs based on the iTunes API. The 
 - Material Design 3
 - Retrofit
 - Kotlin Coroutines
+- Turbine
 - Target SDK: 32
 
 ## Testing
 - Testing is done following the testing pyramid with a given, when, then style 
 - Unit testing is done in JUnit
+- Kotlin Turbine

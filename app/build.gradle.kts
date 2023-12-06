@@ -101,6 +101,8 @@ dependencies {
     // Unit tests
     testImplementation("junit:junit")
     testImplementation ("io.mockk:mockk:1.13.3")
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test")
+    testImplementation ("app.cash.turbine:turbine:1.0.0")
 
     // UI Tests
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
@@ -110,13 +112,4 @@ dependencies {
 
     // serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
-
-    // Optional - Included automatically by material, only add when you need
-    // the icons but not the material library (e.g. when using Material3 or a
-    // custom design system based on Foundation)
-    // Optional - Add full set of material icons
-    // implementation("androidx.compose.material:material-icons-extended")
-    // Optional - Add window size utils
-    // implementation("androidx.compose.material3:material3-window-size-class")
-
 }

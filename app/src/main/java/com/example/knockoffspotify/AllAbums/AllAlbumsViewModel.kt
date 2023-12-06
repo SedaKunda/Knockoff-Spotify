@@ -11,17 +11,17 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AllAlbumsViewModel @Inject constructor(val fetchAlbumsFromApi: FetchAlbumsFromApi) : ViewModel() {
-    private val _result = MutableStateFlow<ViewState>(ViewState.Loading)
-    val result: StateFlow<ViewState> = _result
+    private val _state = MutableStateFlow<ViewState>(ViewState.Loading)
+    val state: StateFlow<ViewState> = _state
 
     fun getAlbums() {
         viewModelScope.launch {
             try {
                 val latestAlbums = fetchAlbumsFromApi()
-                _result.value = ViewState.Success(entries = latestAlbums)
+                _state.value = ViewState.Success(entries = latestAlbums)
             }
             catch (e: Exception) {
-                _result.value = ViewState.Error
+                _state.value = ViewState.Error
                 e.printStackTrace()
             }
         }
