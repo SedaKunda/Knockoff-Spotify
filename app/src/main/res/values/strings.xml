@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Knockoff Spotify</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="unknown_release_date">Unknown release date</string>
 </resources>

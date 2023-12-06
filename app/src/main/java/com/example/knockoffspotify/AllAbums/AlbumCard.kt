@@ -14,6 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.knockoffspotify.R
 import com.example.knockoffspotify.model.Entry
@@ -42,7 +44,9 @@ fun AlbumCard(album: Entry, modifier: Modifier = Modifier) {
             Column {
                 Text(
                     text = album.imName.label,
-                    modifier = Modifier.padding(top = 16.dp),
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.padding(top = 16.dp, end = 16.dp),
                     style = MaterialTheme.typography.titleLarge
                 )
                 Text(
@@ -51,8 +55,12 @@ fun AlbumCard(album: Entry, modifier: Modifier = Modifier) {
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
-                    text = album.imReleaseDate.label.toReadableDate(),
-                    modifier = Modifier.padding(top = 16.dp),
+                    text = album.imReleaseDate.label.toReadableDate(
+                        conversionErrorMessage = stringResource(
+                            R.string.unknown_release_date
+                        )
+                    ),
+                    modifier = Modifier.padding(top = 16.dp, bottom = 16.dp),
                     style = MaterialTheme.typography.bodySmall
                 )
             }
