@@ -1,6 +1,5 @@
 package com.example.knockoffspotify.all_abums
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,8 +16,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.example.knockoffspotify.R
 import com.example.knockoffspotify.model.Entry
+import com.example.knockoffspotify.utils.extractImage
 import com.example.knockoffspotify.utils.toReadableDate
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -29,29 +30,31 @@ fun AlbumCard(album: Entry, modifier: Modifier = Modifier) {
             .padding(8.dp)
             .fillMaxWidth(),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 5.dp
+            defaultElevation = 2.dp
         ),
         colors = CardDefaults.cardColors(MaterialTheme.colorScheme.surface),
         onClick = {},
     ) {
         Row {
-            Image(
-                painter = painterResource(id = R.drawable.ic_launcher_background),
+            AsyncImage(
+                model = album.imImage.extractImage(),
+                modifier = Modifier.padding(8.dp),
+                placeholder = painterResource(id = R.drawable.ic_launcher_background),
+                error = painterResource(id = R.drawable.ic_launcher_background),
                 contentDescription = "Album cover",
-                contentScale = ContentScale.Fit,
-                modifier = Modifier.padding(16.dp)
+                contentScale = ContentScale.Fit
             )
             Column {
                 Text(
                     text = album.imName.label,
-                    maxLines = 2,
+                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.padding(top = 16.dp, end = 16.dp),
-                    style = MaterialTheme.typography.titleLarge
+                    modifier = Modifier.padding(top = 8.dp, end = 16.dp),
+                    style = MaterialTheme.typography.titleMedium
                 )
                 Text(
                     text = album.imArtist.label,
-                    modifier = Modifier.padding(top = 16.dp),
+                    modifier = Modifier.padding(top = 4.dp),
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
@@ -60,7 +63,7 @@ fun AlbumCard(album: Entry, modifier: Modifier = Modifier) {
                             R.string.unknown_release_date
                         )
                     ),
-                    modifier = Modifier.padding(top = 16.dp, bottom = 16.dp),
+                    modifier = Modifier.padding(top = 8.dp, bottom = 8.dp),
                     style = MaterialTheme.typography.bodySmall
                 )
             }
