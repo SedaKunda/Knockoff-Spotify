@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.knockoffspotify.all_abums.AlbumCard
 import com.example.knockoffspotify.all_abums.AllAlbumsScreen
+import com.example.knockoffspotify.components.MainAppBar
 import com.example.knockoffspotify.data.Datasource
 import com.example.knockoffspotify.ui.theme.KnockoffSpotifyTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +42,7 @@ class MainActivity : ComponentActivity() {
 fun GreetingPreview() {
     KnockoffSpotifyTheme {
         Scaffold(
-            topBar = {},
+            topBar = { MainAppBar() },
             content = { padding ->
                 Surface(
                     modifier = Modifier.padding(padding),

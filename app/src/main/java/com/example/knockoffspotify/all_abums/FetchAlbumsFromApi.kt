@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class FetchAlbumsFromApi @Inject constructor(private val service: FeedApiService) {
         fun fetchAlbums() = flow {
-            emit(ViewState.Loading) // better than using suspend fun because it emits multiple values sequentially
+            emit(ViewState.Loading)
             try {
                 emit(ViewState.Success(service.getTopAlbums().feed.entry))
             } catch (exception: Exception) {

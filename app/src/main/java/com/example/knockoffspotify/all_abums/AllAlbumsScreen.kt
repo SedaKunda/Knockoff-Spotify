@@ -12,6 +12,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.knockoffspotify.components.MainAppBar
 import com.example.knockoffspotify.model.Entry
 import com.example.knockoffspotify.utils.ViewState
 
@@ -23,7 +24,7 @@ fun AllAlbumsScreen(allAlbumsViewModel: AllAlbumsViewModel = hiltViewModel()) {
     val result: ViewState = allAlbumsViewModel.state.collectAsState().value
 
     Scaffold(
-        topBar = {},
+        topBar = { MainAppBar(needBackButton = false) },
         content = { padding ->
             Surface(
                 modifier = Modifier.padding(padding),
