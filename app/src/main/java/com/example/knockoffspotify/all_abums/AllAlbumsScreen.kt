@@ -12,6 +12,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.knockoffspotify.components.LoadingItem
 import com.example.knockoffspotify.components.MainAppBar
 import com.example.knockoffspotify.model.Entry
 import com.example.knockoffspotify.utils.ViewState
@@ -32,7 +33,7 @@ fun AllAlbumsScreen(allAlbumsViewModel: AllAlbumsViewModel = hiltViewModel()) {
             ) {
                 when (result){
                     ViewState.Error -> Text(text = "error")
-                    ViewState.Loading -> Text(text = "loading")
+                    ViewState.Loading -> LoadingItem()
                     is ViewState.Success -> AlbumList(result.entries)
                 }
             }
