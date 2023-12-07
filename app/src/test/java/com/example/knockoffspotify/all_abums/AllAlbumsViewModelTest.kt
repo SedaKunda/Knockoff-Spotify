@@ -9,6 +9,7 @@ import com.example.knockoffspotify.utils.ViewState
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
@@ -21,7 +22,7 @@ class AllAlbumsViewModelTest {
     val testCoroutineRule = MainCoroutineRule()
 
     @Test
-    fun `getAlbums can get albums`() = testCoroutineRule.runTest {
+    fun `getAlbums can get albums`() = runTest {
         // given
         val feed = TestDatasource().getFeed()
         val fetchAlbumsService = mockk<FeedApiService> {
@@ -41,7 +42,7 @@ class AllAlbumsViewModelTest {
     }
 
     @Test
-    fun `can return error state when getAlbums fails`() = testCoroutineRule.runTest {
+    fun `can return error state when getAlbums fails`() = runTest {
         // given
         val fetchAlbumsService = mockk<FeedApiService>()
         val fetchAlbumsFromApiTest = FetchAlbumsFromApi(fetchAlbumsService)
@@ -58,7 +59,7 @@ class AllAlbumsViewModelTest {
     }
 
     @Test
-    fun `can return error state when entry value is null`() = testCoroutineRule.runTest {
+    fun `can return error state when entry value is null`() = runTest {
         // given
         val feed = TestDatasource().getFeed().copy(entry = listOf())
         val fetchAlbumsService = mockk<FeedApiService> {
