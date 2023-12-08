@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.all_abums
+package com.example.knockoffspotify.top_abums
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AllAlbumsViewModel @Inject constructor(val fetchAlbumsFromApi: FetchAlbumsFromApi) : ViewModel() {
+class TopAlbumsViewModel @Inject constructor(val fetchAlbumsFromApi: FetchAlbumsFromApi) : ViewModel() {
     private val _state = MutableStateFlow<ViewState>(ViewState.Loading)
     val state: StateFlow<ViewState> = _state
 

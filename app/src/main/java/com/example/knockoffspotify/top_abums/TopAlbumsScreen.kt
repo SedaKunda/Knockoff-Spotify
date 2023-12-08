@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.all_abums
+package com.example.knockoffspotify.top_abums
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,11 +18,11 @@ import com.example.knockoffspotify.model.Entry
 import com.example.knockoffspotify.utils.ViewState
 
 @Composable
-fun AllAlbumsScreen(allAlbumsViewModel: AllAlbumsViewModel = hiltViewModel()) {
+fun TopAlbumsScreen(topAlbumsViewModel: TopAlbumsViewModel = hiltViewModel()) {
     LaunchedEffect(Unit) {
-        allAlbumsViewModel.getAlbums()
+        topAlbumsViewModel.getAlbums()
     }
-    val result: ViewState = allAlbumsViewModel.state.collectAsState().value
+    val result: ViewState = topAlbumsViewModel.state.collectAsState().value
 
     Scaffold(
         topBar = { MainAppBar(needBackButton = false) },
