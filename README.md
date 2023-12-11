@@ -7,9 +7,8 @@ This Kotlin app needs to display the top 100 songs based on the iTunes API. The 
 - Can switch between GridView & ListView
 
 ## Screenshots
-![](markdown_images/Screenshot_20231211_144744.png)
-![](markdown_images/Screenshot_20231211_144824.png)
-![](markdown_images/Screen_recording_20231211_145136.mp4)
+
+<img src="markdown_images/Screenshot_20231211_144744.png" width="200">    <img src="markdown_images/Screenshot_20231211_144824.png" width="200">    <img src="markdown_images/knockoffspotify.gif" width="200">
 
 ## Tech stack
 - Jetpack Compose
