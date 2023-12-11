@@ -19,7 +19,7 @@ import androidx.compose.runtime.Composable
 @Composable
 fun MainAppBar(needBackButton: Boolean = true, isList: Boolean, onLayoutChangeRequested: () -> Unit) {
     TopAppBar(
-        title = { Text("Itunes Top 100") },
+        title = { Text("Knockoff Spotify") },
         navigationIcon = {
             if (needBackButton) {
                 IconButton({}) {
