@@ -22,6 +22,7 @@ This Kotlin app needs to display the top 100 songs based on the iTunes API. The 
 - Retrofit
 - Kotlin Coroutines
 - Turbine
+- Paging Library
 - Target SDK: 32
 
 ## Testing

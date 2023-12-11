@@ -2,9 +2,10 @@ package com.example.knockoffspotify.components
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.GridView
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Sort
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -16,7 +17,7 @@ import androidx.compose.runtime.Composable
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainAppBar(needBackButton: Boolean = true) {
+fun MainAppBar(needBackButton: Boolean = true, isList: Boolean, onLayoutChangeRequested: () -> Unit) {
     TopAppBar(
         title = { Text("Itunes Top 100") },
         navigationIcon = {
@@ -24,7 +25,7 @@ fun MainAppBar(needBackButton: Boolean = true) {
                 IconButton({}) {
                     Icon(
                         imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = "menu items"
+                        contentDescription = "go back"
                     )
                 }
             }
@@ -33,14 +34,24 @@ fun MainAppBar(needBackButton: Boolean = true) {
             IconButton(onClick = {}) {
                 Icon(
                     imageVector = Icons.Filled.Search,
-                    contentDescription = "video call",
+                    contentDescription = "search",
                 )
             }
-            IconButton(onClick = {}) {
-                Icon(
-                    imageVector = Icons.Filled.Sort,
-                    contentDescription = "phone call",
-                )
+            IconButton(onClick = {
+                onLayoutChangeRequested()
+            }) {
+                if (!isList) {
+                    Icon(
+                        imageVector = Icons.Filled.List,
+                        contentDescription = "list view",
+                    )
+                }
+                else {
+                    Icon(
+                        imageVector = Icons.Filled.GridView,
+                        contentDescription = "grid view",
+                    )
+                }
             }
             IconButton(onClick = {}) {
                 Icon(

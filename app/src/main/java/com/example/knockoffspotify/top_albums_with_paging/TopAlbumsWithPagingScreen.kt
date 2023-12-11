@@ -16,7 +16,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.knockoffspotify.components.LoadingItem
 import com.example.knockoffspotify.components.MainAppBar
 import com.example.knockoffspotify.model.Entry
-import com.example.knockoffspotify.top_abums.AlbumCard
+import com.example.knockoffspotify.top_abums.AlbumCardList
 
 
 @Composable
@@ -27,7 +27,12 @@ fun TopAlbumsWithPagingScreen(topAlbumsViewModel: TopAlbumsWithPagingViewModel =
     val result: LazyPagingItems<Entry> = topAlbumsViewModel.state.collectAsLazyPagingItems()
 
     Scaffold(
-        topBar = { MainAppBar(needBackButton = false) },
+        topBar = {
+            MainAppBar(
+                needBackButton = false,
+                isList = true,
+                onLayoutChangeRequested = {})
+        },
         content = { padding ->
             Surface(
                 modifier = Modifier.padding(padding),
@@ -55,7 +60,7 @@ fun TopAlbumsWithPagingScreen(topAlbumsViewModel: TopAlbumsWithPagingViewModel =
 private fun AlbumList(albums: LazyPagingItems<Entry>) {
     LazyColumn {
         items(albums.itemCount) { index ->
-            AlbumCard(albums[index]!!)
+            AlbumCardList(albums[index]!!)
         }
     }
 }

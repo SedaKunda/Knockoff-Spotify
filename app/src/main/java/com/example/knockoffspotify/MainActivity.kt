@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.knockoffspotify.components.MainAppBar
 import com.example.knockoffspotify.data.Datasource
-import com.example.knockoffspotify.top_abums.AlbumCard
+import com.example.knockoffspotify.top_abums.AlbumCardList
 import com.example.knockoffspotify.top_abums.TopAlbumsScreen
 import com.example.knockoffspotify.ui.theme.KnockoffSpotifyTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,7 +42,9 @@ class MainActivity : ComponentActivity() {
 fun GreetingPreview() {
     KnockoffSpotifyTheme {
         Scaffold(
-            topBar = { MainAppBar() },
+            topBar = {
+                MainAppBar(false, isList = true, onLayoutChangeRequested = { })
+            },
             content = { padding ->
                 Surface(
                     modifier = Modifier.padding(padding),
@@ -50,7 +52,7 @@ fun GreetingPreview() {
                 ) {
                     LazyColumn {
                         items(Datasource().loadEntries()) { album ->
-                            AlbumCard(album)
+                            AlbumCardList(album)
                         }
                     }
                 }
