@@ -21,7 +21,7 @@ import com.example.knockoffspotify.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainAppBar(
+fun HomeAppBar(
     needBackButton: Boolean = true,
     isList: Boolean,
     onLayoutChangeRequested: () -> Unit

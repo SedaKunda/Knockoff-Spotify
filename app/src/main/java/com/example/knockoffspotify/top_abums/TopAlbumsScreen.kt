@@ -14,12 +14,16 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.knockoffspotify.components.AlbumCard
+import com.example.knockoffspotify.components.HomeAppBar
 import com.example.knockoffspotify.components.LoadingItem
-import com.example.knockoffspotify.components.MainAppBar
 import com.example.knockoffspotify.utils.ViewState
 
 @Composable
-fun TopAlbumsScreen(topAlbumsViewModel: TopAlbumsViewModel = hiltViewModel()) {
+fun TopAlbumsScreen(
+    topAlbumsViewModel: TopAlbumsViewModel = hiltViewModel(),
+    onAlbumCardClicked: (String) -> Unit
+) {
     LaunchedEffect(Unit) {
         topAlbumsViewModel.getAlbums()
     }
@@ -28,7 +32,7 @@ fun TopAlbumsScreen(topAlbumsViewModel: TopAlbumsViewModel = hiltViewModel()) {
 
     Scaffold(
         topBar = {
-            MainAppBar(
+            HomeAppBar(
                 needBackButton = false,
                 isList = isList,
                 onLayoutChangeRequested = { isList = !isList })
@@ -39,10 +43,10 @@ fun TopAlbumsScreen(topAlbumsViewModel: TopAlbumsViewModel = hiltViewModel()) {
                 color = MaterialTheme.colorScheme.background,
             ) {
                 when (result) {
-                    ViewState.Error -> Text(text = "error")
+                    ViewState.Error -> Text(text = "error") //todo
                     ViewState.Loading -> LoadingItem()
                     is ViewState.Success -> {
-                        AlbumCard(albums = result.entries, isList = isList)
+                        AlbumCard(albums = result.entries, isList = isList, onAlbumCardClicked)
                     }
                 }
             }

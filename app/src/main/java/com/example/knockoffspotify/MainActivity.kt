@@ -5,17 +5,20 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.knockoffspotify.components.MainAppBar
-import com.example.knockoffspotify.data.Datasource
-import com.example.knockoffspotify.top_abums.AlbumCardList
+import androidx.navigation.NavHostController
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.knockoffspotify.album_details.AlbumDetailsScreen
+import com.example.knockoffspotify.components.HomeAppBar
 import com.example.knockoffspotify.top_abums.TopAlbumsScreen
 import com.example.knockoffspotify.ui.theme.KnockoffSpotifyTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,7 +33,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    TopAlbumsScreen()
+                    AppUI()
                 }
             }
         }
@@ -43,20 +46,46 @@ fun GreetingPreview() {
     KnockoffSpotifyTheme {
         Scaffold(
             topBar = {
-                MainAppBar(false, isList = true, onLayoutChangeRequested = { })
+                HomeAppBar(false, isList = true, onLayoutChangeRequested = { })
             },
             content = { padding ->
                 Surface(
                     modifier = Modifier.padding(padding),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    LazyColumn {
-                        items(Datasource().loadEntries()) { album ->
-                            AlbumCardList(album)
-                        }
-                    }
+                    AppUI()
                 }
             }
         )
+    }
+}
+
+@Composable
+fun AppUI() {
+    val navController = rememberNavController()
+    SetupNavigation(navController = navController)
+}
+
+@Composable
+private fun SetupNavigation(navController: NavHostController) {
+    NavHost(
+        navController = navController,
+        startDestination = "top_albums",
+    ) {
+        composable(
+            route = "top_albums",
+            arguments = listOf(navArgument("id") { type = NavType.StringType })
+        ) {
+            TopAlbumsScreen(
+                onAlbumCardClicked = { albumId ->
+                    navController.navigate("album_details" + "/${albumId}")
+                }
+            )
+        }
+        composable(route = "album_details/{id}")
+        { navBackStackEntry ->
+            val id = navBackStackEntry.arguments?.getString("id")
+            AlbumDetailsScreen(album = id)
+        }
     }
 }

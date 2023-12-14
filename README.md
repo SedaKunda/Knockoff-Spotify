@@ -24,6 +24,7 @@ This Kotlin app needs to display the top 100 songs based on the iTunes API. The 
 - Testing is done following the testing pyramid with a given, when, then style 
 - Unit testing is done in JUnit
 - Kotlin Turbine
+- UI testing todo
 
 ## Future features
 - View more details when clicked

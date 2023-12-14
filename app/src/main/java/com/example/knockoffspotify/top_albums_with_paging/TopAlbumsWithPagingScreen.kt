@@ -13,14 +13,16 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.knockoffspotify.components.AlbumCardList
+import com.example.knockoffspotify.components.HomeAppBar
 import com.example.knockoffspotify.components.LoadingItem
-import com.example.knockoffspotify.components.MainAppBar
 import com.example.knockoffspotify.model.Entry
-import com.example.knockoffspotify.top_abums.AlbumCardList
-
 
 @Composable
-fun TopAlbumsWithPagingScreen(topAlbumsViewModel: TopAlbumsWithPagingViewModel = hiltViewModel()) {
+fun TopAlbumsWithPagingScreen(
+    topAlbumsViewModel: TopAlbumsWithPagingViewModel = hiltViewModel(),
+    onAlbumCardClicked: (String) -> Unit
+) {
     LaunchedEffect(Unit) {
         topAlbumsViewModel.getAlbums()
     }
@@ -28,7 +30,7 @@ fun TopAlbumsWithPagingScreen(topAlbumsViewModel: TopAlbumsWithPagingViewModel =
 
     Scaffold(
         topBar = {
-            MainAppBar(
+            HomeAppBar(
                 needBackButton = false,
                 isList = true,
                 onLayoutChangeRequested = {})
@@ -39,7 +41,7 @@ fun TopAlbumsWithPagingScreen(topAlbumsViewModel: TopAlbumsWithPagingViewModel =
                 color = MaterialTheme.colorScheme.background,
             ) {
                 result.apply {
-                    AlbumList(this)
+                    AlbumList(this, onAlbumCardClicked)
                     when {
                         loadState.refresh is LoadState.Loading -> LoadingItem()
 
@@ -57,10 +59,10 @@ fun TopAlbumsWithPagingScreen(topAlbumsViewModel: TopAlbumsWithPagingViewModel =
 }
 
 @Composable
-private fun AlbumList(albums: LazyPagingItems<Entry>) {
+private fun AlbumList(albums: LazyPagingItems<Entry>, onAlbumCardClicked: (String) -> Unit) {
     LazyColumn {
         items(albums.itemCount) { index ->
-            AlbumCardList(albums[index]!!)
+            AlbumCardList(albums[index]!!, onAlbumCardClicked)
         }
     }
 }

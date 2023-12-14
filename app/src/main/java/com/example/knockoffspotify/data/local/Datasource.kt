@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.data
+package com.example.knockoffspotify.data.local
 
 import com.example.knockoffspotify.model.Attributes
 import com.example.knockoffspotify.model.Attributes2

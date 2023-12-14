@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.top_abums
+package com.example.knockoffspotify.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -37,6 +37,7 @@ import com.example.knockoffspotify.utils.toReadableDate
 fun AlbumCard(
     albums: List<Entry>,
     isList: Boolean,
+    onAlbumCardClicked: (String) -> Unit,
 ) {
     AnimatedVisibility(
         visible = !isList,
@@ -45,7 +46,7 @@ fun AlbumCard(
     ) {
         LazyVerticalGrid(columns = GridCells.Fixed(3)) {
             items(items = albums) { album ->
-                AlbumCardGrid(album = album)
+                AlbumCardGrid(album = album, onAlbumCardClicked)
             }
         }
     }
@@ -57,7 +58,7 @@ fun AlbumCard(
     ) {
         LazyColumn {
             items(albums) { album ->
-                AlbumCardList(album)
+                AlbumCardList(album, onAlbumCardClicked)
             }
         }
     }
@@ -65,7 +66,7 @@ fun AlbumCard(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AlbumCardList(album: Entry, modifier: Modifier = Modifier) {
+fun AlbumCardList(album: Entry, onAlbumCardClicked: (String) -> Unit, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
             .padding(8.dp)
@@ -78,7 +79,9 @@ fun AlbumCardList(album: Entry, modifier: Modifier = Modifier) {
             containerColor = MaterialTheme.colorScheme.onPrimary,
             contentColor = MaterialTheme.colorScheme.onSecondaryContainer
         ),
-        onClick = {},
+        onClick = {
+                  onAlbumCardClicked(album.id.attributes.imId) //todo
+        },
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             AsyncImage(
@@ -118,7 +121,7 @@ fun AlbumCardList(album: Entry, modifier: Modifier = Modifier) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AlbumCardGrid(album: Entry, modifier: Modifier = Modifier) {
+fun AlbumCardGrid(album: Entry, onAlbumCardClicked: (String) -> Unit, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
             .padding(8.dp)
@@ -131,7 +134,9 @@ fun AlbumCardGrid(album: Entry, modifier: Modifier = Modifier) {
             containerColor = MaterialTheme.colorScheme.onPrimary,
             contentColor = MaterialTheme.colorScheme.onSecondaryContainer
         ),
-        onClick = {},
+        onClick = {
+                  onAlbumCardClicked(album.id.label) //todo
+        },
     ) {
         Column(modifier = Modifier.padding(8.dp)) {
             AsyncImage(
