@@ -1,5 +1,6 @@
 package com.example.knockoffspotify.data.local
 
+import com.example.knockoffspotify.model.Album
 import com.example.knockoffspotify.model.Attributes
 import com.example.knockoffspotify.model.Attributes2
 import com.example.knockoffspotify.model.Attributes3
@@ -10,7 +11,6 @@ import com.example.knockoffspotify.model.Attributes7
 import com.example.knockoffspotify.model.Attributes8
 import com.example.knockoffspotify.model.Attributes9
 import com.example.knockoffspotify.model.Category
-import com.example.knockoffspotify.model.Entry
 import com.example.knockoffspotify.model.Id
 import com.example.knockoffspotify.model.ImArtist
 import com.example.knockoffspotify.model.ImContentType
@@ -25,9 +25,9 @@ import com.example.knockoffspotify.model.Rights
 import com.example.knockoffspotify.model.Title
 
 class Datasource() {
-    fun loadEntries(): List<Entry> {
+    fun loadEntries(): List<Album> {
         return listOf(
-            Entry(
+            Album(
                 imName = ImName("1989 (Taylor's Version) [Deluxe]"),
                 imArtist = ImArtist("Taylor Swift", Attributes7("")),
                 imReleaseDate = ImReleaseDate("2023-10-20T00:00:00-07:00", Attributes9("")),
@@ -66,7 +66,7 @@ class Datasource() {
                 ),
                 category = Category(Attributes8("", "", "", "")),
             ),
-        Entry(
+        Album(
             imName = ImName("Red (Taylor's Version) [Deluxe]"),
             imArtist = ImArtist("Taylor Swift", Attributes7("")),
             imReleaseDate = ImReleaseDate("2023-10-20T00:00:00-07:00", Attributes9("")),

@@ -37,7 +37,7 @@ class TopAlbumsViewModelTest {
         //then
         testSubject.state.test {
             assertEquals(ViewState.Loading, awaitItem())
-            assertEquals(ViewState.Success(entries = feed.entry), awaitItem())
+            assertEquals(ViewState.Success(entries = feed.album), awaitItem())
         }
     }
 
@@ -61,7 +61,7 @@ class TopAlbumsViewModelTest {
     @Test
     fun `can return error state when entry value is null`() = runTest {
         // given
-        val feed = TestDatasource().getFeed().copy(entry = listOf())
+        val feed = TestDatasource().getFeed().copy(album = listOf())
         val fetchAlbumsService = mockk<TopAlbumsApiService> {
             coEvery { getTopAlbums() } returns TopAlbums(feed = feed)
         }

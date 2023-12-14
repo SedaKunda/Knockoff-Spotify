@@ -123,4 +123,9 @@ dependencies {
 
     // navigation
     implementation("androidx.navigation:navigation-compose")
+
+    // room
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-paging:2.6.1")
+    testImplementation("androidx.room:room-testing:2.6.1")
 }

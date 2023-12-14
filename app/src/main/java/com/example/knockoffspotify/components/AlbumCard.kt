@@ -29,13 +29,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.knockoffspotify.R
-import com.example.knockoffspotify.model.Entry
+import com.example.knockoffspotify.model.Album
 import com.example.knockoffspotify.utils.extractImage
 import com.example.knockoffspotify.utils.toReadableDate
 
 @Composable
 fun AlbumCard(
-    albums: List<Entry>,
+    albums: List<Album>,
     isList: Boolean,
     onAlbumCardClicked: (String) -> Unit,
 ) {
@@ -66,7 +66,7 @@ fun AlbumCard(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AlbumCardList(album: Entry, onAlbumCardClicked: (String) -> Unit, modifier: Modifier = Modifier) {
+fun AlbumCardList(album: Album, onAlbumCardClicked: (String) -> Unit, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
             .padding(8.dp)
@@ -121,7 +121,7 @@ fun AlbumCardList(album: Entry, onAlbumCardClicked: (String) -> Unit, modifier: 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AlbumCardGrid(album: Entry, onAlbumCardClicked: (String) -> Unit, modifier: Modifier = Modifier) {
+fun AlbumCardGrid(album: Album, onAlbumCardClicked: (String) -> Unit, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
             .padding(8.dp)
