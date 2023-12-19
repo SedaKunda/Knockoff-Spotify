@@ -2,6 +2,8 @@ package com.example.knockoffspotify.top_abums
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.knockoffspotify.data.local.AlbumDatabase
+import com.example.knockoffspotify.data.local.AlbumRepository
 import com.example.knockoffspotify.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,10 +14,12 @@ import javax.inject.Inject
 @HiltViewModel
 class TopAlbumsViewModel @Inject constructor(
     val fetchAlbumsFromApi: FetchAlbumsFromApi,
+    private val database: AlbumDatabase
 ) : ViewModel() {
     private val _state = MutableStateFlow<ViewState>(ViewState.Loading)
     val state: StateFlow<ViewState> = _state
 
+    private val repository by lazy { AlbumRepository(database.albumDao()) }
     fun getAlbums() {
         viewModelScope.launch {
             try {
@@ -26,7 +30,10 @@ class TopAlbumsViewModel @Inject constructor(
                             ViewState.Loading -> ViewState.Loading
                             is ViewState.Success -> {
                                 if (viewState.entries.isEmpty()) ViewState.Error
-                                else ViewState.Success(entries = viewState.entries)
+                                else {
+//                                    repository.insert(viewState.entries)
+                                    ViewState.Success(entries = viewState.entries)
+                                }
                             }
                         }
                     )

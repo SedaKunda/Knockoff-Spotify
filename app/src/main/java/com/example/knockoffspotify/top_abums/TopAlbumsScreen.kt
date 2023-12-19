@@ -35,7 +35,7 @@ fun TopAlbumsScreen(
             HomeAppBar(
                 needBackButton = false,
                 isList = isList,
-                onLayoutChangeRequested = { isList = !isList })
+                onLayoutChangeRequested = { isList = !isList }) // todo Avoid backwards writes
         },
         content = { padding ->
             Surface(
