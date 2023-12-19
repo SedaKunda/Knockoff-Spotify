@@ -21,17 +21,16 @@ This Kotlin app needs to display the top 100 songs based on the iTunes API. The 
 
 ## Testing Strategy
 Testing is done following the [testing pyramid](https://martinfowler.com/articles/practical-test-pyramid.html#TheTestPyramid) with a [given, when, then style](https://martinfowler.com/bliki/GivenWhenThen.html)
-- Unit tests: [/app/src/test](app/src/test)
-- Integration tests: [app/src/androidTest/java/com/example/knockoffspotify](app/src/androidTest/java/com/example/knockoffspotify)
-- UI tests: [/app/src/androidTest/java/com/example/knockoffspotify/ui](app/src/androidTest/java/com/example/knockoffspotify/ui)
-- E2E tests:
+- [Unit tests](app/src/test)
+- [Integration tests](app/src/androidTest/java/com/example/knockoffspotify)
+- [UI tests](app/src/androidTest/java/com/example/knockoffspotify/ui)
+- [E2E tests](app/src/androidTest/java/com/example/knockoffspotify/FlowTest.kt)
 
 ## Testing tech stack
 - [JUnit4](https://junit.org/junit4/) testing framework
-- [Mockk] (https://mockk.io/) for Mocking
+- [Mockk](https://mockk.io/) for Mocking
 - [Coroutine Testing API](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-test/) for coroutines
 - [Kotlin Turbine](https://github.com/cashapp/turbine) for Flows
-- 
 
 ## Future features
 - View more details when clicked
