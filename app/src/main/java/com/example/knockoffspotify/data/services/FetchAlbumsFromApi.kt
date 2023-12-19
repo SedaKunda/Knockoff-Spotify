@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.top_abums
+package com.example.knockoffspotify.data.services
 
 import com.example.knockoffspotify.data.remote.TopAlbumsApiService
 import com.example.knockoffspotify.utils.ViewState

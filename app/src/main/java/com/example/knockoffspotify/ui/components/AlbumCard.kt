@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.components
+package com.example.knockoffspotify.ui.components
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn

@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.top_abums
+package com.example.knockoffspotify.data.services
 
 import app.cash.turbine.test
 import com.example.knockoffspotify.data.TestDatasource

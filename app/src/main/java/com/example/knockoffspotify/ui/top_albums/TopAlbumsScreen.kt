@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.top_abums
+package com.example.knockoffspotify.ui.top_albums
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
@@ -14,9 +14,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.knockoffspotify.components.AlbumCard
-import com.example.knockoffspotify.components.HomeAppBar
-import com.example.knockoffspotify.components.LoadingItem
+import com.example.knockoffspotify.ui.components.AlbumCard
+import com.example.knockoffspotify.ui.components.HomeAppBar
+import com.example.knockoffspotify.ui.components.LoadingItem
 import com.example.knockoffspotify.utils.ViewState
 
 @Composable

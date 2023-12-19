@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.components
+package com.example.knockoffspotify.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.top_albums_with_paging
+package com.example.knockoffspotify.data.services
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig

@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.top_albums_with_paging
+package com.example.knockoffspotify.ui.top_albums_with_paging
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,10 +13,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.example.knockoffspotify.components.AlbumCardList
-import com.example.knockoffspotify.components.HomeAppBar
-import com.example.knockoffspotify.components.LoadingItem
 import com.example.knockoffspotify.model.Album
+import com.example.knockoffspotify.ui.components.AlbumCardList
+import com.example.knockoffspotify.ui.components.HomeAppBar
+import com.example.knockoffspotify.ui.components.LoadingItem
 
 @Composable
 fun TopAlbumsWithPagingScreen(

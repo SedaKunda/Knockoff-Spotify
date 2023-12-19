@@ -1,8 +1,9 @@
-package com.example.knockoffspotify.top_albums_with_paging
+package com.example.knockoffspotify.ui.top_albums_with_paging
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import com.example.knockoffspotify.data.services.FetchAlbumsWithPagingFromApi
 import com.example.knockoffspotify.model.Album
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -1,7 +1,8 @@
-package com.example.knockoffspotify.top_abums
+package com.example.knockoffspotify.ui.top_albums
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.knockoffspotify.data.services.FetchAlbumsFromApi
 import com.example.knockoffspotify.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
