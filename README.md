@@ -20,7 +20,7 @@ This Kotlin app needs to display the top 100 songs based on the iTunes API. The 
 - Target SDK: 32
 
 ## Testing Strategy
-Testing is done following the [testing pyramid](https://martinfowler.com/articles/practical-test-pyramid.html#TheTestPyramid) with a [given, when, then style](https://martinfowler.com/bliki/GivenWhenThen.html)
+Testing is done following the [testing pyramid](https://martinfowler.com/articles/practical-test-pyramid.html#TheTestPyramid) with a [given, when, then](https://martinfowler.com/bliki/GivenWhenThen.html) style.
 - [Unit tests](app/src/test)
 - [Integration tests](app/src/androidTest/java/com/example/knockoffspotify)
 - [UI tests](app/src/androidTest/java/com/example/knockoffspotify/ui)

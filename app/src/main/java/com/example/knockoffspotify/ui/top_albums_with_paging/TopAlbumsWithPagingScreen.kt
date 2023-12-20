@@ -31,7 +31,6 @@ fun TopAlbumsWithPagingScreen(
     Scaffold(
         topBar = {
             HomeAppBar(
-                needBackButton = false,
                 isList = true,
                 onLayoutChangeRequested = {})
         },

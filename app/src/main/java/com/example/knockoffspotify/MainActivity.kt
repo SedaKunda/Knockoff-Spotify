@@ -46,7 +46,7 @@ fun GreetingPreview() {
     KnockoffSpotifyTheme {
         Scaffold(
             topBar = {
-                HomeAppBar(false, isList = true, onLayoutChangeRequested = { })
+                HomeAppBar(isList = true, onLayoutChangeRequested = { })
             },
             content = { padding ->
                 Surface(

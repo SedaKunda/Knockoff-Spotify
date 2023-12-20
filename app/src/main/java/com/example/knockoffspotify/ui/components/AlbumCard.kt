@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
@@ -70,7 +71,8 @@ fun AlbumCardList(album: Album, onAlbumCardClicked: (String) -> Unit, modifier: 
     Card(
         modifier = modifier
             .padding(8.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .testTag("AlbumCardList"),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 1.dp
         ),
@@ -125,7 +127,8 @@ fun AlbumCardGrid(album: Album, onAlbumCardClicked: (String) -> Unit, modifier: 
     Card(
         modifier = modifier
             .padding(8.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .testTag("AlbumCardGrid"),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 1.dp
         ),

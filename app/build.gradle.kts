@@ -48,7 +48,10 @@ android {
     }
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/*"
+        }
+        jniLibs {
+            useLegacyPackaging = true
         }
     }
 }
@@ -107,11 +110,12 @@ dependencies {
 
     // UI Tests
     androidTestImplementation("androidx.test:runner:1.5.2")
-    androidTestImplementation("androidx.test:rules:1.5.2")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     androidTestImplementation("androidx.test.ext:junit")
     androidTestImplementation("androidx.test.espresso:espresso-core")
+    androidTestImplementation("io.mockk:mockk-android:1.13.3")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.44")
 
     // serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
