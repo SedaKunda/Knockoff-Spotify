@@ -13,6 +13,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.knockoffspotify.ui.components.AlbumCard
 import com.example.knockoffspotify.ui.components.HomeAppBar
@@ -33,13 +34,12 @@ fun TopAlbumsScreen(
     Scaffold(
         topBar = {
             HomeAppBar(
-                needBackButton = false,
                 isList = isList,
                 onLayoutChangeRequested = { isList = !isList })
         },
         content = { padding ->
             Surface(
-                modifier = Modifier.padding(padding),
+                modifier = Modifier.padding(padding).testTag("TopAlbumsSurface"),
                 color = MaterialTheme.colorScheme.background,
             ) {
                 when (result) {
