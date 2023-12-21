@@ -88,7 +88,7 @@ fun AlbumCardList(album: Album, onAlbumCardClicked: (String) -> Unit, modifier: 
         Row(verticalAlignment = Alignment.CenterVertically) {
             AsyncImage(
                 model = album.imImage.extractImage(),
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier.padding(8.dp).testTag("RowItem"),
                 placeholder = painterResource(id = R.drawable.ic_launcher_background),
                 error = painterResource(id = R.drawable.ic_launcher_background),
                 contentDescription = "Album cover",

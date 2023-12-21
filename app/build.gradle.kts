@@ -109,6 +109,7 @@ dependencies {
     testImplementation ("app.cash.turbine:turbine:1.0.0")
 
     // UI Tests
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.2.0")
     androidTestImplementation("androidx.test:runner:1.5.2")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
@@ -117,6 +118,9 @@ dependencies {
     androidTestImplementation("io.mockk:mockk-android:1.13.3")
     androidTestImplementation("com.google.dagger:hilt-android-testing:2.44")
 
+    // accessibility checks
+    androidTestImplementation("androidx.test.espresso:espresso-accessibility:3.5.1")
+    
     // serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
 
