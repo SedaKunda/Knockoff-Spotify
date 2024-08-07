@@ -14,9 +14,9 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.knockoffspotify.model.Album
-import com.example.knockoffspotify.ui.components.AlbumCardList
-import com.example.knockoffspotify.ui.components.HomeAppBar
 import com.example.knockoffspotify.ui.components.LoadingItem
+import com.example.knockoffspotify.ui.components.albums.AlbumCardList
+import com.example.knockoffspotify.ui.components.topbar.HomeAppBar
 
 @Composable
 fun TopAlbumsWithPagingScreen(

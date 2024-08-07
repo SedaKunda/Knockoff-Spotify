@@ -1,18 +1,9 @@
-package com.example.knockoffspotify.ui.components
+package com.example.knockoffspotify.ui.components.albums
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -34,37 +25,6 @@ import com.example.knockoffspotify.model.Album
 import com.example.knockoffspotify.utils.extractImage
 import com.example.knockoffspotify.utils.toReadableDate
 
-@Composable
-fun AlbumCard(
-    albums: List<Album>,
-    isList: Boolean,
-    onAlbumCardClicked: (String) -> Unit,
-) {
-    AnimatedVisibility(
-        visible = !isList,
-        enter = fadeIn(),
-        exit = fadeOut(),
-    ) {
-        LazyVerticalGrid(columns = GridCells.Fixed(3)) {
-            items(items = albums) { album ->
-                AlbumCardGrid(album = album, onAlbumCardClicked)
-            }
-        }
-    }
-
-    AnimatedVisibility(
-        visible = isList,
-        enter = fadeIn(),
-        exit = fadeOut(),
-    ) {
-        LazyColumn {
-            items(albums) { album ->
-                AlbumCardList(album, onAlbumCardClicked)
-            }
-        }
-    }
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AlbumCardList(album: Album, onAlbumCardClicked: (String) -> Unit, modifier: Modifier = Modifier) {
@@ -82,7 +42,7 @@ fun AlbumCardList(album: Album, onAlbumCardClicked: (String) -> Unit, modifier: 
             contentColor = MaterialTheme.colorScheme.onSecondaryContainer
         ),
         onClick = {
-                  onAlbumCardClicked(album.id.attributes.imId) //todo
+            onAlbumCardClicked(album.id.attributes.imId) //todo
         },
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -117,55 +77,6 @@ fun AlbumCardList(album: Album, onAlbumCardClicked: (String) -> Unit, modifier: 
                     style = MaterialTheme.typography.bodySmall
                 )
             }
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun AlbumCardGrid(album: Album, onAlbumCardClicked: (String) -> Unit, modifier: Modifier = Modifier) {
-    Card(
-        modifier = modifier
-            .padding(8.dp)
-            .fillMaxWidth()
-            .testTag("AlbumCardGrid"),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 1.dp
-        ),
-        shape = RoundedCornerShape(2.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.onPrimary,
-            contentColor = MaterialTheme.colorScheme.onSecondaryContainer
-        ),
-        onClick = {
-                  onAlbumCardClicked(album.id.label) //todo
-        },
-    ) {
-        Column(modifier = Modifier.padding(8.dp)) {
-            AsyncImage(
-                model = album.imImage.extractImage(),
-                modifier = Modifier
-                    .height(100.dp)
-                    .padding(4.dp),
-                placeholder = painterResource(id = R.drawable.ic_launcher_background),
-                error = painterResource(id = R.drawable.ic_launcher_background),
-                contentDescription = "Album cover",
-                contentScale = ContentScale.FillBounds
-            )
-            Text(
-                text = album.imName.label,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.padding(top = 8.dp),
-                style = MaterialTheme.typography.titleSmall
-            )
-            Text(
-                text = album.imArtist.label,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.padding(top = 4.dp),
-                style = MaterialTheme.typography.bodyMedium
-            )
         }
     }
 }

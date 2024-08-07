@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.ui.components
+package com.example.knockoffspotify.ui.components.topbar
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.GridView
