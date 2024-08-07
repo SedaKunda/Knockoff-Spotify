@@ -15,7 +15,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.knockoffspotify.model.Album
 import com.example.knockoffspotify.ui.components.LoadingItem
-import com.example.knockoffspotify.ui.components.albums.AlbumCardList
+import com.example.knockoffspotify.ui.components.albums.AlbumCard
 import com.example.knockoffspotify.ui.components.topbar.HomeAppBar
 
 @Composable
@@ -62,7 +62,7 @@ fun TopAlbumsWithPagingScreen(
 private fun AlbumList(albums: LazyPagingItems<Album>, onAlbumCardClicked: (String) -> Unit) {
     LazyColumn {
         items(albums.itemCount) { index ->
-            AlbumCardList(albums[index]!!, onAlbumCardClicked)
+            AlbumCard(albums[index]!!, onAlbumCardClicked, isGrid = false)
         }
     }
 }

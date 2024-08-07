@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.knockoffspotify.ui.components.LoadingItem
-import com.example.knockoffspotify.ui.components.albums.AlbumCard
+import com.example.knockoffspotify.ui.components.albums.AlbumCardCollection
 import com.example.knockoffspotify.ui.components.topbar.HomeAppBar
 import com.example.knockoffspotify.utils.ViewState
 
@@ -54,7 +54,7 @@ fun TopAlbumsScreen(
                         val filteredAlbums = result.entries.filter { album ->
                             album.imName.label.contains(searchQuery, ignoreCase = true)
                         }
-                        AlbumCard(albums = filteredAlbums, isList = isList, onAlbumCardClicked)
+                        AlbumCardCollection(albums = filteredAlbums, isList = isList, onAlbumCardClicked)
                     }
                 }
             }

@@ -4,24 +4,24 @@ This project is a proof of concept for an Android application that displays the 
 This Kotlin app needs to display the top 100 songs based on the iTunes API. The JSON feed is here: https://itunes.apple.com/us/rss/topalbums/limit=100/json
 
 ## Features
-- **Retrieve Top 100 Albums**: Fetches the top 100 albums from the iTunes API.
-- **Display Albums**: Shows the albums in a list with thumbnails.
-- **View Modes**: Switch between GridView and ListView.
-- **Search Functionality**: Search albums by name.
+- **Retrieve Top 100 Albums**: Fetches the top 100 albums from the iTunes API
+- **Display Albums**: Shows the albums in a list with thumbnails
+- **View Modes**: Switch between GridView and ListView
+- **Search Functionality**: Search albums by name
 
 ## Screenshots
 
 <img src="markdown_images/knockoffspotify.gif" width="200"> &emsp;&emsp;&emsp;&emsp; <img src="markdown_images/screenshot1.png" width="200">&emsp;&emsp;&emsp;&emsp;<img src="markdown_images/screenshot2.png" width="200"> 
 
 ## Tech stack
-- **Kotlin**: Programming language.
-- **Jetpack Compose**: UI toolkit for building native Android interfaces.
-- **Dagger Hilt**: Dependency injection.
-- **Material Design 3**: UI design guidelines.
-- **Retrofit**: HTTP client for API requests.
-- **Kotlin Coroutines**: Asynchronous programming.
-- **Paging Library**: Efficiently loads large data sets.
-- **Target SDK**: 32.
+- **Kotlin**: Programming language
+- **Jetpack Compose**: UI toolkit for building native Android interfaces
+- **Dagger Hilt**: Dependency injection
+- **Material Design 3**: UI design guidelines
+- **Retrofit**: HTTP client for API requests
+- **Kotlin Coroutines**: Asynchronous programming
+- **Paging Library**: Efficiently loads large data sets
+- **Target SDK**: 32
 
 ## Testing Strategy
 Testing is done following the [testing pyramid](https://martinfowler.com/articles/practical-test-pyramid.html#TheTestPyramid) with a [given, when, then](https://martinfowler.com/bliki/GivenWhenThen.html) style.
