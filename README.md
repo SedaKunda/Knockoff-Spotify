@@ -5,10 +5,11 @@ This Kotlin app needs to display the top 100 songs based on the iTunes API. The 
 - Can retrieve top 100 list
 - Display as list with thumbnail from API
 - Can switch between GridView & ListView
+- List is searchable by album name
 
 ## Screenshots
 
-<img src="markdown_images/knockoffspotify.gif" width="200"> &emsp;&emsp;&emsp;&emsp; <img src="markdown_images/Screenshot_20231211_144744.png" width="200">&emsp;&emsp;&emsp;&emsp;<img src="markdown_images/Screenshot_20231211_144824.png" width="200"> 
+<img src="markdown_images/knockoffspotify.gif" width="200"> &emsp;&emsp;&emsp;&emsp; <img src="markdown_images/Screenshot1.png" width="200">&emsp;&emsp;&emsp;&emsp;<img src="markdown_images/Screenshot2.png" width="200"> 
 
 ## Tech stack
 - Jetpack Compose
@@ -34,7 +35,6 @@ Testing is done following the [testing pyramid](https://martinfowler.com/article
 
 ## Future features
 - View more details when clicked
-- Allow list to be searchable
 - A Favorite option
 - Can sort list items
 - Menu option to access other API endpoints
