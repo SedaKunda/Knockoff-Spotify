@@ -1,10 +1,10 @@
 package com.example.knockoffspotify.ui.top_albums
 
+import DefaultErrorScreen
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -42,11 +42,13 @@ fun TopAlbumsScreen(
         },
         content = { padding ->
             Surface(
-                modifier = Modifier.padding(padding).testTag("TopAlbumsSurface"),
+                modifier = Modifier
+                    .padding(padding)
+                    .testTag("TopAlbumsSurface"),
                 color = MaterialTheme.colorScheme.background,
             ) {
                 when (result) {
-                    ViewState.Error -> Text(text = "error") //todo
+                    ViewState.Error -> DefaultErrorScreen(errorMessage = "Failed to load albums")
                     ViewState.Loading -> LoadingItem()
                     is ViewState.Success -> {
                         val filteredAlbums = result.entries.filter { album ->

@@ -9,7 +9,7 @@ This Kotlin app needs to display the top 100 songs based on the iTunes API. The 
 
 ## Screenshots
 
-<img src="markdown_images/knockoffspotify.gif" width="200"> &emsp;&emsp;&emsp;&emsp; <img src="markdown_images/Screenshot1.png" width="200">&emsp;&emsp;&emsp;&emsp;<img src="markdown_images/Screenshot2.png" width="200"> 
+<img src="markdown_images/knockoffspotify.gif" width="200"> &emsp;&emsp;&emsp;&emsp; <img src="markdown_images/screenshot1.png" width="200">&emsp;&emsp;&emsp;&emsp;<img src="markdown_images/screenshot2.png" width="200"> 
 
 ## Tech stack
 - Jetpack Compose
@@ -25,7 +25,7 @@ Testing is done following the [testing pyramid](https://martinfowler.com/article
 - [Unit tests](app/src/test)
 - [Integration tests](app/src/androidTest/java/com/example/knockoffspotify)
 - [UI tests](app/src/androidTest/java/com/example/knockoffspotify/ui)
-- [E2E tests](app/src/androidTest/java/com/example/knockoffspotify/FlowTest.kt)
+- [E2E tests](app/src/androidTest/java/com/example/knockoffspotify/FlowIntegrationTest.kt)
 
 ## Testing tech stack
 - [JUnit4](https://junit.org/junit4/) testing framework

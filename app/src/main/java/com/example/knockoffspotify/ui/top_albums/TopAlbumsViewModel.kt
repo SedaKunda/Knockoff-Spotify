@@ -7,6 +7,7 @@ import com.example.knockoffspotify.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -19,8 +20,12 @@ class TopAlbumsViewModel @Inject constructor(
 
     fun getAlbums() {
         viewModelScope.launch {
-            try {
-                fetchAlbumsFromApi.fetchAlbums().collect { viewState ->
+            fetchAlbumsFromApi.fetchAlbums()
+                .catch { e ->
+                    _state.emit(ViewState.Error)
+                    e.printStackTrace()
+                }
+                .collect { viewState ->
                     _state.emit(
                         when (viewState) {
                             ViewState.Error -> ViewState.Error
@@ -32,10 +37,6 @@ class TopAlbumsViewModel @Inject constructor(
                         }
                     )
                 }
-            } catch (e: Exception) {
-                _state.value = ViewState.Error
-                e.printStackTrace()
-            }
         }
     }
 }
