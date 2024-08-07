@@ -57,7 +57,13 @@ fun HomeAppBar(
             }
         },
         actions = {
-            IconButton(onClick = { searchMode = !searchMode }) {
+            IconButton(onClick = {
+                searchMode = !searchMode
+                if (!searchMode) {
+                    onSearchQueryChanged("")
+                    searchQuery = ""
+                }
+            }) {
                 if (searchMode) {
                     Icon(
                         imageVector = Icons.Filled.Close,

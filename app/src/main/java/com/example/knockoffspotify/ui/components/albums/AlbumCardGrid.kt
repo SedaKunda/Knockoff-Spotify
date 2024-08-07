@@ -27,7 +27,7 @@ import com.example.knockoffspotify.utils.extractImage
 fun AlbumCardGrid(album: Album, onAlbumCardClicked: (String) -> Unit, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
-            .padding(8.dp)
+            .padding(4.dp)
             .fillMaxWidth()
             .testTag("AlbumCardGrid"),
         elevation = CardDefaults.cardElevation(
