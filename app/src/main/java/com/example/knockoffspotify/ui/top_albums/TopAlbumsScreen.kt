@@ -30,12 +30,15 @@ fun TopAlbumsScreen(
     }
     val result: ViewState = topAlbumsViewModel.state.collectAsState().value
     var isList by rememberSaveable { mutableStateOf(true) }
+    var searchQuery by rememberSaveable { mutableStateOf("") }
 
     Scaffold(
         topBar = {
             HomeAppBar(
                 isList = isList,
-                onLayoutChangeRequested = { isList = !isList })
+                onLayoutChangeRequested = { isList = !isList },
+                onSearchQueryChanged = { searchQuery = it }
+            )
         },
         content = { padding ->
             Surface(
@@ -46,7 +49,10 @@ fun TopAlbumsScreen(
                     ViewState.Error -> Text(text = "error") //todo
                     ViewState.Loading -> LoadingItem()
                     is ViewState.Success -> {
-                        AlbumCard(albums = result.entries, isList = isList, onAlbumCardClicked)
+                        val filteredAlbums = result.entries.filter { album ->
+                            album.imName.label.contains(searchQuery, ignoreCase = true)
+                        }
+                        AlbumCard(albums = filteredAlbums, isList = isList, onAlbumCardClicked)
                     }
                 }
             }

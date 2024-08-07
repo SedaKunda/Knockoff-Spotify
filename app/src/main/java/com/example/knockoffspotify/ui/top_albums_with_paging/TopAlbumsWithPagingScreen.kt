@@ -32,7 +32,8 @@ fun TopAlbumsWithPagingScreen(
         topBar = {
             HomeAppBar(
                 isList = true,
-                onLayoutChangeRequested = {})
+                onLayoutChangeRequested = {},
+                onSearchQueryChanged = {})
         },
         content = { padding ->
             Surface(

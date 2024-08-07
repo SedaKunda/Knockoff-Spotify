@@ -3,4 +3,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="unknown_release_date">Unknown release date</string>
     <string name="loading">loading</string>
+    <string name="top_100_albums">Top 100 Albums</string>
+    <string name="search">Search...</string>
 </resources>
