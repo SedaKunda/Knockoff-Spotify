@@ -7,7 +7,7 @@ import retrofit2.HttpException
 import java.io.IOException
 
 class TopAlbumsPagingSource(
-    private val service: TopAlbumsApiService,
+    private val service: AlbumsApiService,
 ) : PagingSource<Int, Album>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Album> {
         return try {

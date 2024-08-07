@@ -2,7 +2,7 @@ package com.example.knockoffspotify.data.services
 
 import app.cash.turbine.test
 import com.example.knockoffspotify.data.TestDatasource
-import com.example.knockoffspotify.data.remote.TopAlbumsApiService
+import com.example.knockoffspotify.data.remote.AlbumsApiService
 import com.example.knockoffspotify.model.TopAlbums
 import com.example.knockoffspotify.utils.ViewState
 import io.mockk.coEvery
@@ -12,15 +12,15 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.io.IOException
 
-class FetchAlbumsFromApiTest {
+class FetchTopAlbumsFromApiTest {
     @Test
     fun `can get albums from api`() = runTest {
         // given
         val feed = TestDatasource().getFeed()
-        val fetchAlbumsService = mockk<TopAlbumsApiService> {
+        val fetchAlbumsService = mockk<AlbumsApiService> {
             coEvery { getTopAlbums() } returns TopAlbums(feed = feed)
         }
-        val testSubject = FetchAlbumsFromApi(fetchAlbumsService)
+        val testSubject = FetchTopAlbumsFromApi(fetchAlbumsService)
 
         // when // then
         testSubject.fetchAlbums().test {
@@ -32,10 +32,10 @@ class FetchAlbumsFromApiTest {
 
     @Test
     fun `can propagate exception when IOException thrown`() = runTest {
-        val fetchAlbumsService = mockk<TopAlbumsApiService> {
+        val fetchAlbumsService = mockk<AlbumsApiService> {
             coEvery { getTopAlbums() } throws IOException("Network Error occurred")
         }
-        val testSubject = FetchAlbumsFromApi(fetchAlbumsService)
+        val testSubject = FetchTopAlbumsFromApi(fetchAlbumsService)
 
         testSubject.fetchAlbums().test {
             assertEquals(ViewState.Loading, awaitItem())

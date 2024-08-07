@@ -84,7 +84,7 @@ private fun SetupNavigation(navController: NavHostController) {
         }
         composable(route = "album_details/{id}")
         { navBackStackEntry ->
-            val id = navBackStackEntry.arguments?.getString("id")
+            val id = navBackStackEntry.arguments?.getString("id") ?: return@composable
             AlbumDetailsScreen(album = id)
         }
     }

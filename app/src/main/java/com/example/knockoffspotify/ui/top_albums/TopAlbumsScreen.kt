@@ -15,6 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.knockoffspotify.model.Album
 import com.example.knockoffspotify.ui.components.LoadingItem
 import com.example.knockoffspotify.ui.components.albums.AlbumCardCollection
 import com.example.knockoffspotify.ui.components.topbar.HomeAppBar
@@ -28,7 +29,7 @@ fun TopAlbumsScreen(
     LaunchedEffect(Unit) {
         topAlbumsViewModel.getAlbums()
     }
-    val result: ViewState = topAlbumsViewModel.state.collectAsState().value
+    val result: ViewState<List<Album>> = topAlbumsViewModel.state.collectAsState().value
     var isList by rememberSaveable { mutableStateOf(true) }
     var searchQuery by rememberSaveable { mutableStateOf("") }
 

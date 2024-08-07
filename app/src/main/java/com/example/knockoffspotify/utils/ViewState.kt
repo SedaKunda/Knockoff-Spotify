@@ -1,9 +1,7 @@
 package com.example.knockoffspotify.utils
 
-import com.example.knockoffspotify.model.Album
-
-sealed class ViewState {
-    data object Loading: ViewState()
-    data object Error: ViewState()
-    data class Success(val entries: List<Album>): ViewState()
+sealed class ViewState<out T> {
+    data object Loading : ViewState<Nothing>()
+    data object Error : ViewState<Nothing>()
+    data class Success<out T>(val entries: T) : ViewState<T>()
 }
