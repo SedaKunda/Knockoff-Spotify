@@ -49,8 +49,7 @@ fun HomeAppBar(
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
                         unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer
-                    )
-
+                    ),
                 )
             }
             else {

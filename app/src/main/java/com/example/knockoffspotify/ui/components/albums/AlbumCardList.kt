@@ -30,7 +30,7 @@ import com.example.knockoffspotify.utils.toReadableDate
 fun AlbumCardList(album: Album, onAlbumCardClicked: (String) -> Unit, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
-            .padding(8.dp)
+            .padding(horizontal = 8.dp, vertical = 2.dp)
             .fillMaxWidth()
             .testTag("AlbumCardList"),
         elevation = CardDefaults.cardElevation(
