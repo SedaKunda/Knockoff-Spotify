@@ -1,6 +1,5 @@
 package com.example.knockoffspotify.data.local
 
-import com.example.knockoffspotify.model.Album
 import com.example.knockoffspotify.model.AlbumImage
 import com.example.knockoffspotify.model.AlbumName
 import com.example.knockoffspotify.model.Artist
@@ -10,11 +9,12 @@ import com.example.knockoffspotify.model.CategoryAttributes
 import com.example.knockoffspotify.model.Id
 import com.example.knockoffspotify.model.IdAttributes
 import com.example.knockoffspotify.model.ReleaseDate
+import com.example.knockoffspotify.model.TopAlbum
 
 class Datasource() {
-    fun loadEntries(): List<Album> {
+    fun loadEntries(): List<TopAlbum> {
         return listOf(
-            Album(
+            TopAlbum(
                 name = AlbumName("1989 (Taylor's Version) [Deluxe]"),
                 artist = Artist("Taylor Swift"),
                 releaseDate = ReleaseDate("2023-10-20T00:00:00-07:00"),
@@ -35,7 +35,7 @@ class Datasource() {
                 id = Id(IdAttributes("1713845538")),
                 category = Category(CategoryAttributes("", "")),
             ),
-            Album(
+            TopAlbum(
                 name = AlbumName("Red (Taylor's Version) [Deluxe]"),
                 artist = Artist("Taylor Swift"),
                 releaseDate = ReleaseDate("2023-10-20T00:00:00-07:00"),
@@ -59,9 +59,9 @@ class Datasource() {
         )
     }
 
-    fun loadManyEntries(): List<Album> {
+    fun loadManyEntries(): List<TopAlbum> {
         return loadEntries() + listOf(
-            Album(
+            TopAlbum(
                 name = AlbumName("1989 (Taylor's Version) [Deluxe]"),
                 artist = Artist("Taylor Swift"),
                 releaseDate = ReleaseDate("2023-10-20T00:00:00-07:00"),
@@ -82,7 +82,7 @@ class Datasource() {
                 id = Id(IdAttributes("1713845538")),
                 category = Category(CategoryAttributes("", "")),
             ),
-            Album(
+            TopAlbum(
                 name = AlbumName("Red (Taylor's Version) [Deluxe]"),
                 artist = Artist("Taylor Swift"),
                 releaseDate = ReleaseDate("2023-10-20T00:00:00-07:00"),
@@ -103,7 +103,7 @@ class Datasource() {
                 id = Id(IdAttributes("1713845538")),
                 category = Category(CategoryAttributes("", "")),
             ),
-            Album(
+            TopAlbum(
                 name = AlbumName("1989 (Taylor's Version) [Deluxe]"),
                 artist = Artist("Taylor Swift"),
                 releaseDate = ReleaseDate("2023-10-20T00:00:00-07:00"),
@@ -124,7 +124,7 @@ class Datasource() {
                 id = Id(IdAttributes("1713845538")),
                 category = Category(CategoryAttributes("", "")),
             ),
-            Album(
+            TopAlbum(
                 name = AlbumName("Red (Taylor's Version) [Deluxe]"),
                 artist = Artist("Taylor Swift"),
                 releaseDate = ReleaseDate("2023-10-20T00:00:00-07:00"),
@@ -145,7 +145,7 @@ class Datasource() {
                 id = Id(IdAttributes("1713845538")),
                 category = Category(CategoryAttributes("", "")),
             ),
-            Album(
+            TopAlbum(
                 name = AlbumName("1989 (Taylor's Version) [Deluxe]"),
                 artist = Artist("Taylor Swift"),
                 releaseDate = ReleaseDate("2023-10-20T00:00:00-07:00"),
@@ -166,7 +166,7 @@ class Datasource() {
                 id = Id(IdAttributes("1713845538")),
                 category = Category(CategoryAttributes("", "")),
             ),
-            Album(
+            TopAlbum(
                 name = AlbumName("Red (Taylor's Version) [Deluxe]"),
                 artist = Artist("Taylor Swift"),
                 releaseDate = ReleaseDate("2023-10-20T00:00:00-07:00"),
@@ -187,7 +187,7 @@ class Datasource() {
                 id = Id(IdAttributes("1713845538")),
                 category = Category(CategoryAttributes("", "")),
             ),
-            Album(
+            TopAlbum(
                 name = AlbumName("1989 (Taylor's Version) [Deluxe]"),
                 artist = Artist("Taylor Swift"),
                 releaseDate = ReleaseDate("2023-10-20T00:00:00-07:00"),
@@ -208,7 +208,7 @@ class Datasource() {
                 id = Id(IdAttributes("1713845538")),
                 category = Category(CategoryAttributes("", "")),
             ),
-            Album(
+            TopAlbum(
                 name = AlbumName("Red (Taylor's Version) [Deluxe]"),
                 artist = Artist("Taylor Swift"),
                 releaseDate = ReleaseDate("2023-10-20T00:00:00-07:00"),
@@ -229,7 +229,7 @@ class Datasource() {
                 id = Id(IdAttributes("1713845538")),
                 category = Category(CategoryAttributes("", "")),
             ),
-            Album(
+            TopAlbum(
                 name = AlbumName("1989 (Taylor's Version) [Deluxe]"),
                 artist = Artist("Taylor Swift"),
                 releaseDate = ReleaseDate("2023-10-20T00:00:00-07:00"),
@@ -250,7 +250,7 @@ class Datasource() {
                 id = Id(IdAttributes("1713845538")),
                 category = Category(CategoryAttributes("", "")),
             ),
-            Album(
+            TopAlbum(
                 name = AlbumName("Red (Taylor's Version) [Deluxe]"),
                 artist = Artist("Taylor Swift"),
                 releaseDate = ReleaseDate("2023-10-20T00:00:00-07:00"),
@@ -271,7 +271,7 @@ class Datasource() {
                 id = Id(IdAttributes("1713845538")),
                 category = Category(CategoryAttributes("", "")),
             ),
-            Album(
+            TopAlbum(
                 name = AlbumName("1989 (Taylor's Version) [Deluxe]"),
                 artist = Artist("Taylor Swift"),
                 releaseDate = ReleaseDate("2023-10-20T00:00:00-07:00"),
@@ -292,7 +292,7 @@ class Datasource() {
                 id = Id(IdAttributes("1713845538")),
                 category = Category(CategoryAttributes("", "")),
             ),
-            Album(
+            TopAlbum(
                 name = AlbumName("Red (Taylor's Version) [Deluxe]"),
                 artist = Artist("Taylor Swift"),
                 releaseDate = ReleaseDate("2023-10-20T00:00:00-07:00"),

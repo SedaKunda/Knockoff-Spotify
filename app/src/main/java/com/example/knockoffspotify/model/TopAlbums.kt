@@ -9,7 +9,7 @@ data class TopAlbums(
 
 data class Feed(
     @SerializedName("entry")
-    val album: List<Album>,
+    val topAlbum: List<TopAlbum>,
     val id: Id2,
 )
 

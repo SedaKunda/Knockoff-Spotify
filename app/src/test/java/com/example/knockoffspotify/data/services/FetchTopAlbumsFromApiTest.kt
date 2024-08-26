@@ -25,7 +25,7 @@ class FetchTopAlbumsFromApiTest {
         // when // then
         testSubject.fetchAlbums().test {
             assertEquals(ViewState.Loading, awaitItem())
-            assertEquals(ViewState.Success(feed.album), awaitItem())
+            assertEquals(ViewState.Success(feed.topAlbum), awaitItem())
             cancelAndIgnoreRemainingEvents()
         }
     }

@@ -20,9 +20,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.knockoffspotify.model.Album
+import com.example.knockoffspotify.model.TopAlbum
 import com.example.knockoffspotify.ui.components.LoadingItem
-import com.example.knockoffspotify.ui.components.albums.AlbumCardCollection
+import com.example.knockoffspotify.ui.components.top_albums.TopAlbumCardCollection
 import com.example.knockoffspotify.ui.components.topbar.HomeAppBar
 import com.example.knockoffspotify.utils.ViewState
 
@@ -37,7 +37,7 @@ fun TopAlbumsScreen(
             topAlbumsViewModel.getAlbums()
         }
     }
-    val result: ViewState<List<Album>> = topAlbumsViewModel.state.collectAsStateWithLifecycle().value
+    val result: ViewState<List<TopAlbum>> = topAlbumsViewModel.state.collectAsStateWithLifecycle().value
     var isList by rememberSaveable { mutableStateOf(true) }
     var searchQuery by rememberSaveable { mutableStateOf("") }
     val listState = rememberLazyListState()
@@ -64,7 +64,7 @@ fun TopAlbumsScreen(
 
 @Composable
 fun TopAlbumsContent(
-    result: ViewState<List<Album>>,
+    result: ViewState<List<TopAlbum>>,
     isList: Boolean,
     searchQuery: String,
     onAlbumCardClicked: (String) -> Unit,
@@ -83,7 +83,7 @@ fun TopAlbumsContent(
                 val filteredAlbums = result.entries.filter { album ->
                     album.name.label.contains(searchQuery, ignoreCase = true)
                 }
-                AlbumCardCollection(albums = filteredAlbums, isList = isList, onAlbumCardClicked)
+                TopAlbumCardCollection(topAlbums = filteredAlbums, isList = isList, onAlbumCardClicked)
             }
         }
     }

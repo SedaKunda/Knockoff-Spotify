@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.ui.components.albums
+package com.example.knockoffspotify.ui.components.top_albums
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,14 +22,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.knockoffspotify.R
-import com.example.knockoffspotify.model.Album
+import com.example.knockoffspotify.model.TopAlbum
 import com.example.knockoffspotify.utils.extractImage
 import com.example.knockoffspotify.utils.toReadableDate
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AlbumCard(
-    album: Album,
+fun TopAlbumCard(
+    topAlbum: TopAlbum,
     onAlbumCardClicked: (String) -> Unit,
     isGrid: Boolean,
     modifier: Modifier = Modifier
@@ -45,10 +45,10 @@ fun AlbumCard(
             containerColor = MaterialTheme.colorScheme.onPrimary,
             contentColor = MaterialTheme.colorScheme.onSecondaryContainer
         ),
-        onClick = { onAlbumCardClicked(album.id.attributes.imId) },
+        onClick = { onAlbumCardClicked(topAlbum.id.attributes.imId) },
     ) {
         AlbumCardContent(
-            album = album,
+            topAlbum = topAlbum,
             modifier = Modifier.padding(8.dp),
             contentScale = if (isGrid) ContentScale.FillBounds else ContentScale.Fit,
             isGrid = isGrid
@@ -58,7 +58,7 @@ fun AlbumCard(
 
 @Composable
 fun AlbumCardContent(
-    album: Album,
+    topAlbum: TopAlbum,
     modifier: Modifier,
     contentScale: ContentScale,
     isGrid: Boolean
@@ -66,7 +66,7 @@ fun AlbumCardContent(
     if (isGrid) {
         Column(modifier = modifier) {
             AsyncImage(
-                model = album.image.extractImage(),
+                model = topAlbum.image.extractImage(),
                 modifier = Modifier
                     .height(100.dp)
                     .padding(4.dp),
@@ -76,14 +76,14 @@ fun AlbumCardContent(
                 contentScale = contentScale
             )
             Text(
-                text = album.name.label,
+                text = topAlbum.name.label,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.padding(top = 8.dp),
                 style = MaterialTheme.typography.titleSmall
             )
             Text(
-                text = album.artist.label,
+                text = topAlbum.artist.label,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.padding(top = 4.dp),
@@ -93,7 +93,7 @@ fun AlbumCardContent(
     } else {
         Row(verticalAlignment = Alignment.CenterVertically) {
             AsyncImage(
-                model = album.image.extractImage(),
+                model = topAlbum.image.extractImage(),
                 modifier = Modifier
                     .padding(8.dp)
                     .testTag("RowItem"),
@@ -104,19 +104,19 @@ fun AlbumCardContent(
             )
             Column {
                 Text(
-                    text = album.name.label,
+                    text = topAlbum.name.label,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.padding(top = 8.dp, end = 16.dp),
                     style = MaterialTheme.typography.titleMedium
                 )
                 Text(
-                    text = album.artist.label,
+                    text = topAlbum.artist.label,
                     modifier = Modifier.padding(top = 4.dp),
                     style = MaterialTheme.typography.bodyLarge
                 )
                 Text(
-                    text = album.releaseDate.label.toReadableDate(
+                    text = topAlbum.releaseDate.label.toReadableDate(
                         conversionErrorMessage = stringResource(R.string.unknown_release_date)
                     ),
                     modifier = Modifier.padding(top = 4.dp, bottom = 8.dp),

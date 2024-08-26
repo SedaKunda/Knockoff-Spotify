@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.ui.components.albums
+package com.example.knockoffspotify.ui.components.top_albums
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -9,11 +9,11 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import com.example.knockoffspotify.model.Album
+import com.example.knockoffspotify.model.TopAlbum
 
 @Composable
-fun AlbumCardCollection(
-    albums: List<Album>,
+fun TopAlbumCardCollection(
+    topAlbums: List<TopAlbum>,
     isList: Boolean,
     onAlbumCardClicked: (String) -> Unit,
 ) {
@@ -24,14 +24,14 @@ fun AlbumCardCollection(
     ) {
         if (isList) {
             LazyColumn {
-                items(albums) { album ->
-                    AlbumCard(album, onAlbumCardClicked, isGrid = false)
+                items(topAlbums) { album ->
+                    TopAlbumCard(album, onAlbumCardClicked, isGrid = false)
                 }
             }
         } else {
             LazyVerticalGrid(columns = GridCells.Fixed(3)) {
-                items(items = albums) { album ->
-                    AlbumCard(album = album, onAlbumCardClicked, isGrid = true)
+                items(items = topAlbums) { album ->
+                    TopAlbumCard(topAlbum = album, onAlbumCardClicked, isGrid = true)
                 }
             }
         }

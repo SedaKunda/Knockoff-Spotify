@@ -9,7 +9,7 @@ class FetchTopAlbumsFromApi @Inject constructor(private val service: AlbumsApiSe
     fun fetchAlbums() = flow {
         emit(ViewState.Loading)
         try {
-            emit(ViewState.Success(service.getTopAlbums().feed.album))
+            emit(ViewState.Success(service.getTopAlbums().feed.topAlbum))
         } catch (exception: Exception) {
             emit(ViewState.Error)
         }
