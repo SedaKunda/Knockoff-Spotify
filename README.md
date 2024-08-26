@@ -20,7 +20,7 @@ This Kotlin app needs to display the top 100 songs based on the iTunes API. The 
 - **Material Design 3**: UI design guidelines
 - **Retrofit**: HTTP client for API requests
 - **Kotlin Coroutines**: Asynchronous programming
-- **Paging Library**: Efficiently loads large data sets
+- **Paging Library**: Efficiently loads large data sets (branch: paging-library)
 - **Target SDK**: 32
 
 ## Testing Strategy
