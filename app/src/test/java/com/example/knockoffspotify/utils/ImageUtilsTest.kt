@@ -1,7 +1,7 @@
 package com.example.knockoffspotify.utils
 
+import com.example.knockoffspotify.model.AlbumImage
 import com.example.knockoffspotify.model.Attributes
-import com.example.knockoffspotify.model.ImImage
 import org.junit.Assert
 import org.junit.Test
 
@@ -9,15 +9,15 @@ class ImageUtilsTest {
     @Test
     fun `can get image correctly`() {
         val imImage = listOf(
-            ImImage(
+            AlbumImage(
                 label = "https://is1-ssl.mzstatic.com/image/thumb/Music116/",
                 attributes = Attributes(height = "55")
             ),
-            ImImage(
+            AlbumImage(
                 label = "https://is1-ssl.mzstatic.com/image/thumb/Music116/",
                 attributes = Attributes(height = "60")
             ),
-            ImImage(
+            AlbumImage(
                 label = "https://is1-ssl.mzstatic.com/image/thumb/Music116/",
                 attributes = Attributes(height = "170")
             )
@@ -30,7 +30,7 @@ class ImageUtilsTest {
 
     @Test
     fun `can return null if image list is empty`() {
-        val imImage: List<ImImage> = listOf()
+        val imImage: List<AlbumImage> = listOf()
 
         val extractedImage = imImage.extractImage()
 
@@ -39,7 +39,7 @@ class ImageUtilsTest {
 
     @Test
     fun `can return null if image list has only 1 element`() {
-        val imImage: List<ImImage> = listOf()
+        val imImage: List<AlbumImage> = listOf()
 
         val extractedImage = imImage.extractImage()
 

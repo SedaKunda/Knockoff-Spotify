@@ -1,8 +1,8 @@
 package com.example.knockoffspotify.utils
 
-import com.example.knockoffspotify.model.ImImage
+import com.example.knockoffspotify.model.AlbumImage
 
-fun List<ImImage>.extractImage(): String? {
+fun List<AlbumImage>.extractImage(): String? {
     return try {
         this.last().label
     }

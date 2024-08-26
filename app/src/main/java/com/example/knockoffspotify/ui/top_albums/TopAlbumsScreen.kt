@@ -3,6 +3,7 @@ package com.example.knockoffspotify.ui.top_albums
 import DefaultErrorScreen
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -39,6 +40,7 @@ fun TopAlbumsScreen(
     val result: ViewState<List<Album>> = topAlbumsViewModel.state.collectAsStateWithLifecycle().value
     var isList by rememberSaveable { mutableStateOf(true) }
     var searchQuery by rememberSaveable { mutableStateOf("") }
+    val listState = rememberLazyListState()
 
     Scaffold(
         topBar = {
@@ -79,7 +81,7 @@ fun TopAlbumsContent(
             ViewState.Loading -> LoadingItem()
             is ViewState.Success -> {
                 val filteredAlbums = result.entries.filter { album ->
-                    album.imName.label.contains(searchQuery, ignoreCase = true)
+                    album.name.label.contains(searchQuery, ignoreCase = true)
                 }
                 AlbumCardCollection(albums = filteredAlbums, isList = isList, onAlbumCardClicked)
             }
