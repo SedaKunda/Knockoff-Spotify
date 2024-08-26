@@ -12,7 +12,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.io.IOException
 
-class FetchTopAlbumsFromApiTest {
+class FetchTopAlbumFromApiTest {
     @Test
     fun `can get albums from api`() = runTest {
         // given

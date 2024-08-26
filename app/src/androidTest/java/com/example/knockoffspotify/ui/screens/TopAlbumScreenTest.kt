@@ -25,7 +25,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.junit.Test
 
-class TopAlbumsScreenTest : BaseUiTest() {
+class TopAlbumScreenTest : BaseUiTest() {
 
     @Test
     fun checkTitleIsDisplayed() {

@@ -18,7 +18,7 @@ import org.junit.Test
 
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class TopAlbumsViewModelTest {
+class TopAlbumViewModelTest {
 
     @get:Rule
     val testCoroutineRule = MainCoroutineRule()

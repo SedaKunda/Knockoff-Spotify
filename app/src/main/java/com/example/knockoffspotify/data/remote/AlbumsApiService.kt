@@ -1,15 +1,18 @@
 package com.example.knockoffspotify.data.remote
 
-import com.example.knockoffspotify.model.TopAlbum
+import com.example.knockoffspotify.model.Album
 import com.example.knockoffspotify.model.TopAlbums
 import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface AlbumsApiService {
 
     @GET("us/rss/topalbums/limit=100/json")
     suspend fun getTopAlbums(): TopAlbums
 
-    @GET("lookup?id={id}&entity=song")
-    suspend fun getAlbumDetails(@Path("id") id: String): TopAlbum //todo: change to AlbumDetails
+    @GET("lookup")
+    suspend fun getAlbumDetails(
+        @Query("id") id: String,
+        @Query("entity") entity: String = "song"
+    ): Album
 }
