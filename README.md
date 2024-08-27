@@ -8,6 +8,7 @@ This Kotlin app needs to display the top 100 songs based on the iTunes API. The 
 - **Display Albums**: Shows the albums in a list with thumbnails
 - **View Modes**: Switch between GridView and ListView
 - **Search Functionality**: Search albums by name
+- **Album Details**: View album details on click
 
 ## Screenshots
 
@@ -37,7 +38,6 @@ Testing is done following the [testing pyramid](https://martinfowler.com/article
 - [Kotlin Turbine](https://github.com/cashapp/turbine) for testing Flows
 
 ## Future features
-- View more details on album click
 - A Favorite option for albums
 - Sort list items by name, artist, or release date
 - Menu option to access other API endpoints

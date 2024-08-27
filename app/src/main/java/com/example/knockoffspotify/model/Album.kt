@@ -13,4 +13,5 @@ data class Song (
     val primaryGenreName: String,
     val collectionExplicitness: String,
     val kind: String,
+    val artworkUrl30: String,
 )
