@@ -1,9 +1,9 @@
 package com.example.knockoffspotify.data
 
 import com.example.knockoffspotify.data.local.Datasource
-import com.example.knockoffspotify.model.Feed
-import com.example.knockoffspotify.model.Id2
-import com.example.knockoffspotify.model.TopAlbum
+import com.example.knockoffspotify.data.model.Feed
+import com.example.knockoffspotify.data.model.Id2
+import com.example.knockoffspotify.data.model.TopAlbum
 
 class TestDatasource {
     private fun getEntries(): List<TopAlbum> {

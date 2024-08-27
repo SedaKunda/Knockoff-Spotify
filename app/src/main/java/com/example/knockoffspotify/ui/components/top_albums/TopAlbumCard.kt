@@ -22,7 +22,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.knockoffspotify.R
-import com.example.knockoffspotify.model.TopAlbum
+import com.example.knockoffspotify.data.model.TopAlbum
 import com.example.knockoffspotify.utils.extractImage
 import com.example.knockoffspotify.utils.toReadableDate
 

@@ -1,15 +1,15 @@
 package com.example.knockoffspotify.data.local
 
-import com.example.knockoffspotify.model.AlbumImage
-import com.example.knockoffspotify.model.AlbumName
-import com.example.knockoffspotify.model.Artist
-import com.example.knockoffspotify.model.Attributes
-import com.example.knockoffspotify.model.Category
-import com.example.knockoffspotify.model.CategoryAttributes
-import com.example.knockoffspotify.model.Id
-import com.example.knockoffspotify.model.IdAttributes
-import com.example.knockoffspotify.model.ReleaseDate
-import com.example.knockoffspotify.model.TopAlbum
+import com.example.knockoffspotify.data.model.AlbumImage
+import com.example.knockoffspotify.data.model.AlbumName
+import com.example.knockoffspotify.data.model.Artist
+import com.example.knockoffspotify.data.model.Attributes
+import com.example.knockoffspotify.data.model.Category
+import com.example.knockoffspotify.data.model.CategoryAttributes
+import com.example.knockoffspotify.data.model.Id
+import com.example.knockoffspotify.data.model.IdAttributes
+import com.example.knockoffspotify.data.model.ReleaseDate
+import com.example.knockoffspotify.data.model.TopAlbum
 
 class Datasource() {
     fun loadEntries(): List<TopAlbum> {

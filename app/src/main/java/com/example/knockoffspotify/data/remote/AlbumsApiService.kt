@@ -1,7 +1,7 @@
 package com.example.knockoffspotify.data.remote
 
-import com.example.knockoffspotify.model.Album
-import com.example.knockoffspotify.model.TopAlbums
+import com.example.knockoffspotify.data.model.Album
+import com.example.knockoffspotify.data.model.TopAlbums
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.model
+package com.example.knockoffspotify.data.model
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.SerialName

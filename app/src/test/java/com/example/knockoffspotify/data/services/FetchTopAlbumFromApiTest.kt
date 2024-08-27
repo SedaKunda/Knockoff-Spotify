@@ -2,8 +2,8 @@ package com.example.knockoffspotify.data.services
 
 import app.cash.turbine.test
 import com.example.knockoffspotify.data.TestDatasource
+import com.example.knockoffspotify.data.model.TopAlbums
 import com.example.knockoffspotify.data.remote.AlbumsApiService
-import com.example.knockoffspotify.model.TopAlbums
 import com.example.knockoffspotify.utils.ViewState
 import io.mockk.coEvery
 import io.mockk.mockk

@@ -1,7 +1,7 @@
 package com.example.knockoffspotify.utils
 
-import com.example.knockoffspotify.model.AlbumImage
-import com.example.knockoffspotify.model.Attributes
+import com.example.knockoffspotify.data.model.AlbumImage
+import com.example.knockoffspotify.data.model.Attributes
 import org.junit.Assert
 import org.junit.Test
 

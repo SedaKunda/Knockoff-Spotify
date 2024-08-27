@@ -19,7 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.knockoffspotify.model.TopAlbum
+import com.example.knockoffspotify.data.model.TopAlbum
 import com.example.knockoffspotify.ui.components.LoadingItem
 import com.example.knockoffspotify.ui.components.top_albums.TopAlbumCardCollection
 import com.example.knockoffspotify.ui.components.topbar.HomeAppBar
