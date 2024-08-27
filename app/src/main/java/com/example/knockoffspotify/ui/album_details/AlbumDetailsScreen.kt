@@ -27,8 +27,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import coil.compose.AsyncImage
-import com.example.knockoffspotify.model.Album
-import com.example.knockoffspotify.model.Song
+import com.example.knockoffspotify.data.model.Song //todo remove
+import com.example.knockoffspotify.domain.model.Album
 import com.example.knockoffspotify.ui.components.LoadingItem
 import com.example.knockoffspotify.ui.components.topbar.DefaultAppBar
 import com.example.knockoffspotify.utils.ViewState
@@ -72,23 +72,23 @@ fun AlbumDetailsContent(
             ViewState.Error -> DefaultErrorScreen(errorMessage = "Failed to load selected album")
             ViewState.Loading -> LoadingItem()
             is ViewState.Success -> {
-                AlbumCard(songs = result.entries.results)
+                AlbumCard(album = result.entries)
             }
         }
     }
 }
 
 @Composable
-fun AlbumCard(songs: List<Song>) {
+fun AlbumCard(album: Album) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(8.dp)
     ) {
         item {
-            AlbumCardHeader(songs.first().artworkUrl30)
+            AlbumCardHeader(album.artwork)
         }
-        items(songs) {
+        items(album.songs) {
             SongCard(song = it)
         }
     }
