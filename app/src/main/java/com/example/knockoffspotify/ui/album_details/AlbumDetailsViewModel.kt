@@ -32,10 +32,16 @@ class AlbumDetailsViewModel @Inject constructor(
                         ViewState.Error -> ViewState.Error
                         ViewState.Loading -> ViewState.Loading
                         is ViewState.Success -> {
-                            ViewState.Success(viewState.entries)
+                            val filteredResults = viewState.entries.results.filter { it.kind == RecordType.SONG.value }
+                            ViewState.Success(Album(filteredResults))
                         }
                     }
                 }
         }
+    }
+
+    enum class RecordType(val value: String) {
+        SONG("song"),
+        ALBUM("Album");
     }
 }
