@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.top_albums
+package com.example.knockoffspotify.ui.top_albums
 
 import app.cash.turbine.test
 import com.example.knockoffspotify.data.TestDatasource
@@ -6,7 +6,6 @@ import com.example.knockoffspotify.data.model.TopAlbums
 import com.example.knockoffspotify.data.remote.AlbumsApiService
 import com.example.knockoffspotify.data.services.FetchTopAlbumsFromApi
 import com.example.knockoffspotify.helpers.MainCoroutineRule
-import com.example.knockoffspotify.ui.top_albums.TopAlbumsViewModel
 import com.example.knockoffspotify.utils.ViewState
 import io.mockk.coEvery
 import io.mockk.mockk
