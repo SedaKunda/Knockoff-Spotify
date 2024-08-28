@@ -38,16 +38,16 @@ class AlbumDetailsViewModel @Inject constructor(
         }
     }
 
-    private fun handleSuccess(viewState: ViewState.Success<ApiAlbum>): ViewState<Album> { //todo move
+    private fun handleSuccess(viewState: ViewState.Success<ApiAlbum>): ViewState<Album> { //todo move ApiAlbum out of viewmodel!!
         val (albums, songs) = viewState.entries.results.partition { it.collectionType == RecordType.ALBUM.value }
 
         val albumResult = albums.firstOrNull()?.let {
             Album(
-                albumName = it.collectionName,
-                artistName = it.artistName,
-                genre = it.primaryGenreName,
-                explicitness = it.collectionExplicitness,
-                artwork = it.artworkUrl60,
+                albumName = it.collectionName ?: "",
+                artistName = it.artistName ?: "",
+                genre = it.primaryGenreName ?: "",
+                explicitness = it.collectionExplicitness ?: "",
+                artwork = it.artworkUrl60 ?: "",
                 songs = songs
             )
         }

@@ -5,4 +5,6 @@
     <string name="loading">loading</string>
     <string name="top_100_albums">Top 100 Albums</string>
     <string name="search">Search...</string>
+    <string name="unknown_track">Unknown Track</string>
+    <string name="unknown_artist">Unknown Artist</string>
 </resources>
