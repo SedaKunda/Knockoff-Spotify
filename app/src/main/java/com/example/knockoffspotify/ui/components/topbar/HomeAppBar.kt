@@ -31,9 +31,9 @@ fun HomeAppBar(
     isList: Boolean,
     onLayoutChangeRequested: () -> Unit,
     onSearchQueryChanged: (String) -> Unit,
-    modifier: Modifier = Modifier
+    searchQuery: String,
+    modifier: Modifier = Modifier,
 ) {
-    var searchQuery by rememberSaveable { mutableStateOf("") }
     var searchMode by rememberSaveable { mutableStateOf(false) }
 
     TopAppBar(
@@ -42,7 +42,6 @@ fun HomeAppBar(
                 TextField(
                     value = searchQuery, onValueChange = {
                         onSearchQueryChanged(it)
-                        searchQuery = it
                     },
                     placeholder = { Text(stringResource(R.string.search)) },
                     modifier = Modifier.testTag("SearchTextField"),
@@ -61,7 +60,6 @@ fun HomeAppBar(
                 searchMode = !searchMode
                 if (!searchMode) {
                     onSearchQueryChanged("")
-                    searchQuery = ""
                 }
             }) {
                 if (searchMode) {

@@ -45,7 +45,8 @@ fun TopAlbumsScreen(
             HomeAppBar(
                 isList = isList,
                 onLayoutChangeRequested = { isList = !isList },
-                onSearchQueryChanged = { searchQuery = it }
+                onSearchQueryChanged = { searchQuery = it },
+                searchQuery = searchQuery
             )
         },
         content = { padding ->
