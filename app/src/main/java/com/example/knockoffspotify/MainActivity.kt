@@ -73,8 +73,7 @@ private fun SetupNavigation(navController: NavHostController) {
         startDestination = "top_albums",
     ) {
         composable(
-            route = "top_albums",
-            arguments = listOf(navArgument("id") { type = NavType.StringType })
+            route = "top_albums"
         ) {
             TopAlbumsScreen(
                 onAlbumCardClicked = { albumId ->
@@ -82,10 +81,13 @@ private fun SetupNavigation(navController: NavHostController) {
                 }
             )
         }
-        composable(route = "album_details/{id}")
+        composable(
+            route = "album_details/{id}",
+            arguments = listOf(navArgument("id") { type = NavType.StringType })
+        )
         { navBackStackEntry ->
             val id = navBackStackEntry.arguments?.getString("id") ?: return@composable
-            AlbumDetailsScreen(albumId = id)
+            AlbumDetailsScreen(albumId = id, onBackPressed = { navController.popBackStack() })
         }
     }
 }

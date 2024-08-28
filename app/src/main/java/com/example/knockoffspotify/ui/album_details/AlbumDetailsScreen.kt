@@ -36,7 +36,8 @@ import com.example.knockoffspotify.utils.ViewState
 @Composable
 fun AlbumDetailsScreen(
     albumId: String,
-    albumDetailsViewModel: AlbumDetailsViewModel = hiltViewModel()
+    albumDetailsViewModel: AlbumDetailsViewModel = hiltViewModel(),
+    onBackPressed: () -> Unit
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     LaunchedEffect(lifecycleOwner) {
@@ -48,7 +49,7 @@ fun AlbumDetailsScreen(
 
     Scaffold(
         topBar = {
-            DefaultAppBar()
+            DefaultAppBar(onBackPressed)
         },
         content = { padding ->
             AlbumDetailsContent(

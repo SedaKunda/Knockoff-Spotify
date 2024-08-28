@@ -13,11 +13,13 @@ import androidx.compose.runtime.Composable
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DefaultAppBar() {
+fun DefaultAppBar(
+    navigateBack: () -> Unit
+) {
     TopAppBar(
         title = { Text("Album Details") },
         navigationIcon = {
-            IconButton({}) {
+            IconButton(onClick = navigateBack) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = "go back"
