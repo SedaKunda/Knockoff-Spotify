@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.data.remote
+package com.example.knockoffspotify.data.api
 
 import com.example.knockoffspotify.data.model.Album
 import com.example.knockoffspotify.data.model.TopAlbums

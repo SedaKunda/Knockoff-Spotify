@@ -17,10 +17,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.knockoffspotify.ui.album_details.AlbumDetailsScreen
+import com.example.knockoffspotify.ui.albums.album_details.AlbumDetailsScreen
+import com.example.knockoffspotify.ui.albums.top_albums.TopAlbumsScreen
 import com.example.knockoffspotify.ui.components.topbar.HomeAppBar
 import com.example.knockoffspotify.ui.theme.KnockoffSpotifyTheme
-import com.example.knockoffspotify.ui.top_albums.TopAlbumsScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,9 +1,9 @@
-package com.example.knockoffspotify.ui.album_details
+package com.example.knockoffspotify.ui.albums.album_details
 
 import app.cash.turbine.test
 import com.example.knockoffspotify.data.model.Song
-import com.example.knockoffspotify.data.services.FetchAlbumDetails
 import com.example.knockoffspotify.domain.model.Album
+import com.example.knockoffspotify.domain.usecase.GetAlbumDetailsUseCase
 import com.example.knockoffspotify.helpers.MainCoroutineRule
 import com.example.knockoffspotify.utils.ViewState
 import io.mockk.coEvery
@@ -23,10 +23,10 @@ class AlbumDetailsViewModelTest {
 
     @Test
     fun `can get album details`() = runTest {
-        val mockedFetchAlbumDetails = mockk<FetchAlbumDetails> {
-            coEvery { fetchAlbumDetails("123") } returns flowOf(ViewState.Success(apiAlbum))
+        val mockedGetAlbumDetailsUseCase = mockk<GetAlbumDetailsUseCase> {
+            coEvery { this@mockk("123") } returns flowOf(ViewState.Success(apiAlbum))
         }
-        val testSubject = AlbumDetailsViewModel(mockedFetchAlbumDetails)
+        val testSubject = AlbumDetailsViewModel(mockedGetAlbumDetailsUseCase)
 
         testSubject.getAlbumDetails("123")
 
@@ -38,10 +38,10 @@ class AlbumDetailsViewModelTest {
 
     @Test
     fun `can return error state when getAlbumDetails fails`() = runTest {
-        val mockedFetchAlbumDetails = mockk<FetchAlbumDetails> {
-            coEvery { fetchAlbumDetails("123") } returns flowOf(ViewState.Error)
+        val mockedGetAlbumDetailsUseCase = mockk<GetAlbumDetailsUseCase> {
+            coEvery { this@mockk("123") } returns flowOf(ViewState.Error)
         }
-        val testSubject = AlbumDetailsViewModel(mockedFetchAlbumDetails)
+        val testSubject = AlbumDetailsViewModel(mockedGetAlbumDetailsUseCase)
 
         testSubject.getAlbumDetails("123")
 
@@ -54,12 +54,12 @@ class AlbumDetailsViewModelTest {
     // all these mapping tests should move to a separate class
     @Test
     fun `can return error state when mapping fails`() = runTest {
-        val mockedFetchAlbumDetails = mockk<FetchAlbumDetails> {
-            coEvery { fetchAlbumDetails("123") } returns flowOf(
+        val mockedGetAlbumDetailsUseCase = mockk<GetAlbumDetailsUseCase> {
+            coEvery { this@mockk("123") } returns flowOf(
                 ViewState.Success(emptyApiAlbum)
             )
         }
-        val testSubject = AlbumDetailsViewModel(mockedFetchAlbumDetails)
+        val testSubject = AlbumDetailsViewModel(mockedGetAlbumDetailsUseCase)
 
         testSubject.getAlbumDetails("123")
 
@@ -71,12 +71,12 @@ class AlbumDetailsViewModelTest {
 
     @Test
     fun `can return error state when list has no RecordType albums`() = runTest {
-        val mockedFetchAlbumDetails = mockk<FetchAlbumDetails> {
-            coEvery { fetchAlbumDetails("123") } returns flowOf(
+        val mockedGetAlbumDetailsUseCase = mockk<GetAlbumDetailsUseCase> {
+            coEvery { this@mockk("123") } returns flowOf(
                 ViewState.Success(ApiAlbum(listOf(song2)))
             )
         }
-        val testSubject = AlbumDetailsViewModel(mockedFetchAlbumDetails)
+        val testSubject = AlbumDetailsViewModel(mockedGetAlbumDetailsUseCase)
 
         testSubject.getAlbumDetails("123")
 

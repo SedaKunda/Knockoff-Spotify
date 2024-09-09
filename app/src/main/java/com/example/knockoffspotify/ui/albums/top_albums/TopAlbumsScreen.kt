@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.ui.top_albums
+package com.example.knockoffspotify.ui.albums.top_albums
 
 import DefaultErrorScreen
 import androidx.compose.foundation.layout.PaddingValues

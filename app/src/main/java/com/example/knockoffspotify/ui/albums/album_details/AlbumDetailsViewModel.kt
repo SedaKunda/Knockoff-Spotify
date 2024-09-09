@@ -1,9 +1,9 @@
-package com.example.knockoffspotify.ui.album_details
+package com.example.knockoffspotify.ui.albums.album_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.knockoffspotify.data.services.FetchAlbumDetails
 import com.example.knockoffspotify.domain.model.Album
+import com.example.knockoffspotify.domain.usecase.GetAlbumDetailsUseCase
 import com.example.knockoffspotify.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,14 +16,14 @@ import com.example.knockoffspotify.data.model.Album as ApiAlbum
 
 @HiltViewModel
 class AlbumDetailsViewModel @Inject constructor(
-    private val fetchAlbumDetails: FetchAlbumDetails,
+    private val getAlbumDetailsUseCase: GetAlbumDetailsUseCase,
 ) : ViewModel() {
     private val _state = MutableStateFlow<ViewState<Album>>(ViewState.Loading)
     val state: StateFlow<ViewState<Album>> = _state.asStateFlow()
 
     fun getAlbumDetails(id: String) {
         viewModelScope.launch {
-            fetchAlbumDetails.fetchAlbumDetails(id)
+            getAlbumDetailsUseCase(id)
                 .catch { e ->
                     _state.value = ViewState.Error
                     e.printStackTrace()

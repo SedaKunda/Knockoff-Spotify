@@ -1,4 +1,4 @@
-package com.example.knockoffspotify.ui.album_details
+package com.example.knockoffspotify.ui.albums.album_details
 
 import DefaultErrorScreen
 import androidx.compose.foundation.layout.Box

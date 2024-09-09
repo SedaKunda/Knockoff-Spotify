@@ -1,6 +1,6 @@
 package com.example.knockoffspotify.di
 
-import com.example.knockoffspotify.data.remote.AlbumsApiService
+import com.example.knockoffspotify.data.api.AlbumsApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,7 +43,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideFeedApiService(retrofit: Retrofit): AlbumsApiService {
+    fun provideAlbumsApiService(retrofit: Retrofit): AlbumsApiService {
         return retrofit.create(AlbumsApiService::class.java)
     }
 

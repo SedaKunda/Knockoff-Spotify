@@ -1,17 +1,19 @@
-package com.example.knockoffspotify.data.services
+package com.example.knockoffspotify.domain.usecase
 
-import com.example.knockoffspotify.data.remote.AlbumsApiService
+import com.example.knockoffspotify.domain.repository.AlbumsRepository
 import com.example.knockoffspotify.utils.ViewState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class FetchTopAlbumsFromApi @Inject constructor(private val service: AlbumsApiService) {
-    fun fetchAlbums() = flow {
+class GetTopAlbumsUseCase @Inject constructor(
+    private val repository: AlbumsRepository
+) {
+    operator fun invoke() = flow {
         emit(ViewState.Loading)
         try {
-            emit(ViewState.Success(service.getTopAlbums().feed.topAlbum))
+            emit(ViewState.Success(repository.getTopAlbums()))
         } catch (exception: Exception) {
             emit(ViewState.Error)
         }

@@ -1,9 +1,9 @@
-package com.example.knockoffspotify.ui.top_albums
+package com.example.knockoffspotify.ui.albums.top_albums
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.knockoffspotify.data.model.TopAlbum
-import com.example.knockoffspotify.data.services.FetchTopAlbumsFromApi
+import com.example.knockoffspotify.domain.usecase.GetTopAlbumsUseCase
 import com.example.knockoffspotify.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,14 +15,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TopAlbumsViewModel @Inject constructor(
-    val fetchTopAlbumsFromApi: FetchTopAlbumsFromApi,
+    val getTopAlbumsUseCase: GetTopAlbumsUseCase,
 ) : ViewModel() {
     private val _state = MutableStateFlow<ViewState<List<TopAlbum>>>(ViewState.Loading)
     val state: StateFlow<ViewState<List<TopAlbum>>> = _state.asStateFlow()
 
     fun getAlbums() {
         viewModelScope.launch {
-            fetchTopAlbumsFromApi.fetchAlbums()
+            getTopAlbumsUseCase()
                 .catch { e ->
                     _state.value = ViewState.Error
                     e.printStackTrace()

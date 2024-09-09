@@ -15,10 +15,10 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performSemanticsAction
-import com.example.knockoffspotify.data.local.Datasource
+import com.example.knockoffspotify.data.Datasource
 import com.example.knockoffspotify.ui.BaseUiTest
-import com.example.knockoffspotify.ui.top_albums.TopAlbumsScreen
-import com.example.knockoffspotify.ui.top_albums.TopAlbumsViewModel
+import com.example.knockoffspotify.ui.albums.top_albums.TopAlbumsScreen
+import com.example.knockoffspotify.ui.albums.top_albums.TopAlbumsViewModel
 import com.example.knockoffspotify.utils.ViewState
 import io.mockk.every
 import io.mockk.mockk
@@ -44,7 +44,7 @@ class TopAlbumScreenTest : BaseUiTest() {
     fun checkListIsDisplayed() {
         val topAlbumsViewModel = mockk<TopAlbumsViewModel>(relaxUnitFun = true) {
             every { state } returns MutableStateFlow(
-                ViewState.Success(entries = Datasource().loadEntries())
+                ViewState.Success(entries = com.example.knockoffspotify.data.Datasource().loadEntries())
             )
         }
         composeTestRule.setContent {
@@ -70,7 +70,7 @@ class TopAlbumScreenTest : BaseUiTest() {
     fun checkListIsScrollable() {
         val topAlbumsViewModel = mockk<TopAlbumsViewModel>(relaxUnitFun = true) {
             every { state } returns MutableStateFlow(
-                ViewState.Success(entries = Datasource().loadEntries())
+                ViewState.Success(entries = com.example.knockoffspotify.data.Datasource().loadEntries())
             )
         }
         composeTestRule.setContent {
@@ -84,7 +84,7 @@ class TopAlbumScreenTest : BaseUiTest() {
     fun checkListItemIsClickable() {
         val topAlbumsViewModel = mockk<TopAlbumsViewModel>(relaxUnitFun = true) {
             every { state } returns MutableStateFlow(
-                ViewState.Success(entries = Datasource().loadEntries())
+                ViewState.Success(entries = com.example.knockoffspotify.data.Datasource().loadEntries())
             )
         }
         composeTestRule.setContent {
@@ -104,7 +104,7 @@ class TopAlbumScreenTest : BaseUiTest() {
     fun checkSwitchToGridViewAndBackToListView() {
         val topAlbumsViewModel = mockk<TopAlbumsViewModel>(relaxUnitFun = true) {
             every { state } returns MutableStateFlow(
-                ViewState.Success(entries = Datasource().loadEntries())
+                ViewState.Success(entries = com.example.knockoffspotify.data.Datasource().loadEntries())
             )
         }
         composeTestRule.setContent {
@@ -125,7 +125,7 @@ class TopAlbumScreenTest : BaseUiTest() {
     fun checkActivityRecreationSavesGridState() {
         val topAlbumsViewModel = mockk<TopAlbumsViewModel>(relaxUnitFun = true) {
             every { state } returns MutableStateFlow(
-                ViewState.Success(entries = Datasource().loadEntries())
+                ViewState.Success(entries = com.example.knockoffspotify.data.Datasource().loadEntries())
             )
         }
         val restorationTester = StateRestorationTester(composeTestRule)
