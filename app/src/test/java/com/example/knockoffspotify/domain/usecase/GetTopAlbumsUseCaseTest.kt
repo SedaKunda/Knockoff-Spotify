@@ -39,7 +39,7 @@ class GetTopAlbumsUseCaseTest {
     }
 
     @Test
-    fun `can propagate error when IOException thrown`() = runTest {
+    fun `can emit Error when IOException thrown`() = runTest {
         // given
         mockRepository.apply {
             coEvery { getTopAlbums() } throws IOException("Network Error occurred")
@@ -57,7 +57,7 @@ class GetTopAlbumsUseCaseTest {
     }
 
     @Test
-    fun `can propagate error when HttpException thrown`() = runTest {
+    fun `can emit Error when HttpException thrown`() = runTest {
         // given
         mockRepository.apply {
             coEvery { getTopAlbums() } throws HttpException(Response.error<Any>(404, "".toResponseBody()))
@@ -75,7 +75,7 @@ class GetTopAlbumsUseCaseTest {
     }
 
     @Test
-    fun `can propagate error when Exception thrown`() = runTest {
+    fun `can emit Error when Exception thrown`() = runTest {
         // given
         mockRepository.apply {
             coEvery { getTopAlbums() } throws Exception("Unknown Error occurred")

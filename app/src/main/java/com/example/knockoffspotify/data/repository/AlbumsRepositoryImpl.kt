@@ -31,37 +31,37 @@ class AlbumsRepositoryImpl @Inject constructor(
         }
         return albumResult
     }
+}
 
-    private fun SongApi.toSongDomain(): Song {
-        return Song(
-            trackName = trackName ?: "",
-            artistName = artistName ?: "",
-            primaryGenreName = primaryGenreName ?: "",
-            collectionExplicitness = collectionExplicitness ?: "",
-            artwork = artworkUrl100 ?: artworkUrl60 ?: artworkUrl30 ?: ""
+internal fun SongApi.toSongDomain(): Song {
+    return Song(
+        trackName = trackName ?: "",
+        artistName = artistName ?: "",
+        primaryGenreName = primaryGenreName ?: "",
+        collectionExplicitness = collectionExplicitness ?: "",
+        artwork = artworkUrl100 ?: artworkUrl60 ?: artworkUrl30 ?: ""
+    )
+}
+
+internal fun SongApi.toAlbumDomain(): Album {
+    return Album(
+        albumName = collectionName ?: "",
+        artistName = artistName ?: "",
+        genre = primaryGenreName ?: "",
+        explicitness = collectionExplicitness ?: "",
+        artwork = artworkUrl100 ?: artworkUrl60 ?: artworkUrl30 ?: "",
+        songs = emptyList()
+    )
+}
+
+internal fun TopAlbumsApi.toTopAlbumDomain(): List<TopAlbum> {
+    return feed.topAlbums.map {
+        TopAlbum(
+            id = it.id.attributes.imId,
+            name = it.name.label,
+            artist = it.artist.label,
+            releaseDate = it.releaseDate.label.toReadableDate("Unknown release date"),
+            imageUrl = it.image.extractImage() ?: ""
         )
-    }
-
-    private fun SongApi.toAlbumDomain(): Album {
-        return Album(
-            albumName = collectionName ?: "",
-            artistName = artistName ?: "",
-            genre = primaryGenreName ?: "",
-            explicitness = collectionExplicitness ?: "",
-            artwork = artworkUrl100 ?: artworkUrl60 ?: artworkUrl30 ?: "",
-            songs = emptyList()
-        )
-    }
-
-    private fun TopAlbumsApi.toTopAlbumDomain(): List<TopAlbum> {
-        return feed.topAlbums.map {
-            TopAlbum(
-                id = it.id.attributes.imId,
-                name = it.name.label,
-                artist = it.artist.label,
-                releaseDate = it.releaseDate.label.toReadableDate("Unknown release date"),
-                imageUrl = it.image.extractImage() ?: ""
-            )
-        }
     }
 }

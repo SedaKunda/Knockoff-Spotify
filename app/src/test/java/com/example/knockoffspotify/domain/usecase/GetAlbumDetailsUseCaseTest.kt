@@ -37,7 +37,25 @@ class GetAlbumDetailsUseCaseTest {
     }
 
     @Test
-    fun `can propagate Error when IOException thrown`() = runTest {
+    fun `can emit Error when getAlbumDetails returns null`() = runTest {
+        // given
+        mockRepository.apply {
+            coEvery { getAlbumDetails("123") } returns null
+        }
+
+        // when
+        val result = testSubject("123")
+
+        // then
+        result.test {
+            assertEquals(ViewState.Loading, awaitItem())
+            assertEquals(ViewState.Error, awaitItem())
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `can emit Error when IOException thrown`() = runTest {
         // given
         mockRepository.apply {
             coEvery { getAlbumDetails("123") } throws IOException("Network Error occurred")
@@ -55,7 +73,7 @@ class GetAlbumDetailsUseCaseTest {
     }
 
     @Test
-    fun `can propagate Error when Exception thrown`() = runTest {
+    fun `can emit Error when Exception thrown`() = runTest {
         // given
         mockRepository.apply {
             coEvery { getAlbumDetails("123") } throws Exception("Unknown Error occurred")

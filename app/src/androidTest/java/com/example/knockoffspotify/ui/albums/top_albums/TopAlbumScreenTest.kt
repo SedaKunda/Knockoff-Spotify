@@ -15,7 +15,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performSemanticsAction
-import com.example.knockoffspotify.TestDatasource
+import com.example.knockoffspotify.domain.model.TopAlbum
 import com.example.knockoffspotify.ui.BaseUiTest
 import com.example.knockoffspotify.utils.ViewState
 import io.mockk.every
@@ -25,7 +25,7 @@ import org.junit.Test
 
 class TopAlbumScreenTest : BaseUiTest() {
 
-    private val stubDatasourceEntries = TestDatasource().loadEntries()
+    private val stubDatasourceEntries = listOf(topAlbum, topAlbum, topAlbum)
 
     @Test
     fun checkTitleIsDisplayed() {
@@ -142,5 +142,13 @@ class TopAlbumScreenTest : BaseUiTest() {
         composeTestRule.onNode(hasAnyChild(hasTestTag("AlbumCardGrid"))).assertIsDisplayed()
     }
 
-
+    companion object {
+        private val topAlbum = TopAlbum(
+            name = "Test Album",
+            artist = "Test Artist",
+            releaseDate = "2023-10-20T00:00:00-07:00",
+            imageUrl = "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/8e/35/6c/8e356cc2-0be4-b83b-d29e-b578623df2ac/23UM1IM34052.rgb.jpg/55x55bb.png",
+            id = "1713845538",
+        )
+    }
 }
