@@ -2,13 +2,13 @@ package com.example.knockoffspotify.ui.albums.top_albums
 
 import app.cash.turbine.test
 import com.example.knockoffspotify.data.TestDatasource
-import com.example.knockoffspotify.domain.repository.AlbumsRepository
 import com.example.knockoffspotify.domain.usecase.GetTopAlbumsUseCase
 import com.example.knockoffspotify.helpers.MainCoroutineRule
 import com.example.knockoffspotify.utils.ViewState
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -21,18 +21,15 @@ class TopAlbumViewModelTest {
     @get:Rule
     val testCoroutineRule = MainCoroutineRule()
 
-    private val mockRepository = mockk<AlbumsRepository>()
     private val stubTopAlbums = TestDatasource.topAlbumsStubbed.feed
-    private val getTopAlbumsUseCase = GetTopAlbumsUseCase(mockRepository)
+    private val getTopAlbumsUseCaseMock = mockk<GetTopAlbumsUseCase>()
 
-    private val testSubject = TopAlbumsViewModel(getTopAlbumsUseCase)
+    private val testSubject = TopAlbumsViewModel(getTopAlbumsUseCaseMock)
 
     @Test
-    fun `getAlbums can get albums`() = runTest {
+    fun `can get albums`() = runTest {
         // given
-        mockRepository.apply {
-            coEvery { getTopAlbums() } returns stubTopAlbums.topAlbums
-        }
+        coEvery { getTopAlbumsUseCaseMock() } returns flowOf(ViewState.Success(stubTopAlbums.topAlbums))
 
         // when
         testSubject.getAlbums()
@@ -45,7 +42,10 @@ class TopAlbumViewModelTest {
     }
 
     @Test
-    fun `can return error state when getAlbums fails`() = runTest {
+    fun `can return error state when GetTopAlbumsUseCase returns Error`() = runTest {
+        // given
+        coEvery { getTopAlbumsUseCaseMock() } returns flowOf(ViewState.Error)
+
         // when
         testSubject.getAlbums()
 
@@ -57,12 +57,10 @@ class TopAlbumViewModelTest {
     }
 
     @Test
-    fun `can return error state when entry value is null`() = runTest {
+    fun `can return error state when top albums returns empty list`() = runTest {
         // given
         val emptyTopAlbumsStub = stubTopAlbums.copy(topAlbums = listOf())
-        mockRepository.apply {
-            coEvery { getTopAlbums() } returns emptyTopAlbumsStub.topAlbums
-        }
+        coEvery { getTopAlbumsUseCaseMock() } returns flowOf(ViewState.Success(emptyTopAlbumsStub.topAlbums))
 
         // when
         testSubject.getAlbums()

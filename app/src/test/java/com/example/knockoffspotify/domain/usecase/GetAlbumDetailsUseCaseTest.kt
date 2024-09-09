@@ -1,5 +1,6 @@
 package com.example.knockoffspotify.domain.usecase
 
+import app.cash.turbine.test
 import com.example.knockoffspotify.data.TestDatasource.Companion.songStubbed
 import com.example.knockoffspotify.data.model.Album
 import com.example.knockoffspotify.domain.repository.AlbumsRepository
@@ -10,6 +11,7 @@ import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
+import java.io.IOException
 
 class GetAlbumDetailsUseCaseTest {
 
@@ -36,14 +38,38 @@ class GetAlbumDetailsUseCaseTest {
     }
 
     @Test
-    fun `can propagate exception when IOException thrown`() = runTest {
+    fun `can propagate Error when IOException thrown`() = runTest {
+        // given
+        mockRepository.apply {
+            coEvery { getAlbumDetails("123") } throws IOException("Network Error occurred")
+        }
+
         // when
         val result = testSubject("123")
 
         // then
-        result.toList().apply {
-            assertEquals(ViewState.Loading, this[0])
-            assertEquals(ViewState.Error, this[1])
+        result.test {
+            assertEquals(ViewState.Loading, awaitItem())
+            assertEquals(ViewState.Error, awaitItem())
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `can propagate Error when Exception thrown`() = runTest {
+        // given
+        mockRepository.apply {
+            coEvery { getAlbumDetails("123") } throws Exception("Unknown Error occurred")
+        }
+
+        // when
+        val result = testSubject("123")
+
+        // then
+        result.test {
+            assertEquals(ViewState.Loading, awaitItem())
+            assertEquals(ViewState.Error, awaitItem())
+            cancelAndIgnoreRemainingEvents()
         }
     }
 }

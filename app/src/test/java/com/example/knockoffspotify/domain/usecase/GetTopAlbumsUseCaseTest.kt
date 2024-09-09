@@ -7,8 +7,11 @@ import com.example.knockoffspotify.utils.ViewState
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import retrofit2.HttpException
+import retrofit2.Response
 import java.io.IOException
 
 class GetTopAlbumsUseCaseTest {
@@ -36,10 +39,46 @@ class GetTopAlbumsUseCaseTest {
     }
 
     @Test
-    fun `can propagate exception when IOException thrown`() = runTest {
+    fun `can propagate error when IOException thrown`() = runTest {
         // given
         mockRepository.apply {
             coEvery { getTopAlbums() } throws IOException("Network Error occurred")
+        }
+
+        // when
+        val result = testSubject()
+
+        // then
+        result.test {
+            assertEquals(ViewState.Loading, awaitItem())
+            assertEquals(ViewState.Error, awaitItem())
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `can propagate error when HttpException thrown`() = runTest {
+        // given
+        mockRepository.apply {
+            coEvery { getTopAlbums() } throws HttpException(Response.error<Any>(404, "".toResponseBody()))
+        }
+
+        // when
+        val result = testSubject()
+
+        // then
+        result.test {
+            assertEquals(ViewState.Loading, awaitItem())
+            assertEquals(ViewState.Error, awaitItem())
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `can propagate error when Exception thrown`() = runTest {
+        // given
+        mockRepository.apply {
+            coEvery { getTopAlbums() } throws Exception("Unknown Error occurred")
         }
 
         // when

@@ -21,15 +21,19 @@ class AlbumDetailsViewModelTest {
     @get:Rule
     val testCoroutineRule = MainCoroutineRule()
 
+    private val getAlbumDetailsUseCaseMock = mockk<GetAlbumDetailsUseCase>()
+
+    private val testSubject = AlbumDetailsViewModel(getAlbumDetailsUseCaseMock)
+
     @Test
     fun `can get album details`() = runTest {
-        val mockedGetAlbumDetailsUseCase = mockk<GetAlbumDetailsUseCase> {
-            coEvery { this@mockk("123") } returns flowOf(ViewState.Success(apiAlbum))
-        }
-        val testSubject = AlbumDetailsViewModel(mockedGetAlbumDetailsUseCase)
+        // given
+        coEvery { getAlbumDetailsUseCaseMock("123") } returns flowOf(ViewState.Success(apiAlbum))
 
+        // when
         testSubject.getAlbumDetails("123")
 
+        // then
         testSubject.state.test {
             assertEquals(ViewState.Loading, awaitItem())
             assertEquals(ViewState.Success(album), awaitItem())
@@ -37,14 +41,14 @@ class AlbumDetailsViewModelTest {
     }
 
     @Test
-    fun `can return error state when getAlbumDetails fails`() = runTest {
-        val mockedGetAlbumDetailsUseCase = mockk<GetAlbumDetailsUseCase> {
-            coEvery { this@mockk("123") } returns flowOf(ViewState.Error)
-        }
-        val testSubject = AlbumDetailsViewModel(mockedGetAlbumDetailsUseCase)
+    fun `can return error state when getAlbumDetails returns Error`() = runTest {
+        // given
+        coEvery { getAlbumDetailsUseCaseMock("123") } returns flowOf(ViewState.Error)
 
+        // when
         testSubject.getAlbumDetails("123")
 
+        // then
         testSubject.state.test {
             assertEquals(ViewState.Loading, awaitItem())
             assertEquals(ViewState.Error, awaitItem())
@@ -87,7 +91,6 @@ class AlbumDetailsViewModelTest {
     }
 
     companion object {
-
         private val song1 = Song(
             wrapperType = "Wrapper Type",
             kind = "Test Kind",
