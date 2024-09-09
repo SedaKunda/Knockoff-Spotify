@@ -28,7 +28,7 @@ object NetworkModule {
     @Named("loggingInterceptor")
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         return HttpLoggingInterceptor().apply {
-            this.level = HttpLoggingInterceptor.Level.BODY
+            this.level = HttpLoggingInterceptor.Level.BASIC
         }
     }
 

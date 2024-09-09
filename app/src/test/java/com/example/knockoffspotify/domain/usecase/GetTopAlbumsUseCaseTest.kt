@@ -1,7 +1,7 @@
 package com.example.knockoffspotify.domain.usecase
 
 import app.cash.turbine.test
-import com.example.knockoffspotify.data.TestDatasource.Companion.topAlbumsStubbed
+import com.example.knockoffspotify.domain.model.TopAlbum
 import com.example.knockoffspotify.domain.repository.AlbumsRepository
 import com.example.knockoffspotify.utils.ViewState
 import io.mockk.coEvery
@@ -16,7 +16,7 @@ import java.io.IOException
 
 class GetTopAlbumsUseCaseTest {
     private val mockRepository = mockk<AlbumsRepository>()
-    private val stubTopAlbums = topAlbumsStubbed.feed.topAlbums
+    private val stubTopAlbums = listOf(topAlbum)
 
     private val testSubject = GetTopAlbumsUseCase(mockRepository)
 
@@ -90,5 +90,15 @@ class GetTopAlbumsUseCaseTest {
             assertEquals(ViewState.Error, awaitItem())
             cancelAndIgnoreRemainingEvents()
         }
+    }
+
+    companion object {
+        private val topAlbum = TopAlbum(
+            name = "Test Album",
+            artist = "Test Artist",
+            releaseDate = "2023-10-20T00:00:00-07:00",
+            imageUrl = "https://example.com/image.jpg",
+            id = "1713845538",
+        )
     }
 }

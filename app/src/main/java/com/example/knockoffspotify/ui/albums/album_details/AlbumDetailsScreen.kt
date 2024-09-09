@@ -29,8 +29,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import coil.compose.AsyncImage
 import com.example.knockoffspotify.R
-import com.example.knockoffspotify.data.model.Song //todo remove data reference
 import com.example.knockoffspotify.domain.model.Album
+import com.example.knockoffspotify.domain.model.Song
 import com.example.knockoffspotify.ui.components.LoadingItem
 import com.example.knockoffspotify.ui.components.topbar.DefaultAppBar
 import com.example.knockoffspotify.utils.ViewState

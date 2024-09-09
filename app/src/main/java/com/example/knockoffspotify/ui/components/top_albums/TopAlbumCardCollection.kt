@@ -9,7 +9,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
-import com.example.knockoffspotify.data.model.TopAlbum
+import com.example.knockoffspotify.domain.model.TopAlbum
 
 @Composable
 fun TopAlbumCardCollection(

@@ -1,8 +1,8 @@
 package com.example.knockoffspotify.domain.usecase
 
 import app.cash.turbine.test
-import com.example.knockoffspotify.data.TestDatasource.Companion.songStubbed
-import com.example.knockoffspotify.data.model.Album
+import com.example.knockoffspotify.domain.model.Album
+import com.example.knockoffspotify.domain.model.Song
 import com.example.knockoffspotify.domain.repository.AlbumsRepository
 import com.example.knockoffspotify.utils.ViewState
 import io.mockk.coEvery
@@ -16,7 +16,6 @@ import java.io.IOException
 class GetAlbumDetailsUseCaseTest {
 
     private val mockRepository = mockk<AlbumsRepository>()
-    private val stubSong = songStubbed
 
     private val testSubject = GetAlbumDetailsUseCase(mockRepository)
 
@@ -24,7 +23,7 @@ class GetAlbumDetailsUseCaseTest {
     fun `can get album details from api`() = runTest {
         // given
         mockRepository.apply {
-            coEvery { getAlbumDetails("123") } returns Album(listOf(stubSong))
+            coEvery { getAlbumDetails("123") } returns album
         }
 
         // when
@@ -33,7 +32,7 @@ class GetAlbumDetailsUseCaseTest {
         // then
         result.toList().apply {
             assertEquals(ViewState.Loading, this[0])
-            assertEquals(ViewState.Success(Album(listOf(stubSong))), this[1])
+            assertEquals(ViewState.Success(album), this[1])
         }
     }
 
@@ -71,5 +70,24 @@ class GetAlbumDetailsUseCaseTest {
             assertEquals(ViewState.Error, awaitItem())
             cancelAndIgnoreRemainingEvents()
         }
+    }
+
+    companion object {
+        private val song1 = Song(
+            artistName = "Test Artist",
+            artwork = "https://example.com/image.jpg",
+            primaryGenreName = "Test Genre",
+            trackName = "Test Track",
+            collectionExplicitness = "explicit",
+        )
+
+        private val album = Album(
+            albumName = "Test Album",
+            artistName = "Test Artist",
+            genre = "Test Genre",
+            explicitness = "explicit",
+            artwork = "https://example.com/image.jpg",
+            songs = listOf(song1)
+        )
     }
 }

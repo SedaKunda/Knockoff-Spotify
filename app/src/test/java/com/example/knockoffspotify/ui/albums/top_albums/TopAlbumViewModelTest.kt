@@ -1,7 +1,7 @@
 package com.example.knockoffspotify.ui.albums.top_albums
 
 import app.cash.turbine.test
-import com.example.knockoffspotify.data.TestDatasource
+import com.example.knockoffspotify.domain.model.TopAlbum
 import com.example.knockoffspotify.domain.usecase.GetTopAlbumsUseCase
 import com.example.knockoffspotify.helpers.MainCoroutineRule
 import com.example.knockoffspotify.utils.ViewState
@@ -21,7 +21,7 @@ class TopAlbumViewModelTest {
     @get:Rule
     val testCoroutineRule = MainCoroutineRule()
 
-    private val stubTopAlbums = TestDatasource.topAlbumsStubbed.feed
+    private val stubTopAlbums = listOf(topAlbum)
     private val getTopAlbumsUseCaseMock = mockk<GetTopAlbumsUseCase>()
 
     private val testSubject = TopAlbumsViewModel(getTopAlbumsUseCaseMock)
@@ -29,7 +29,7 @@ class TopAlbumViewModelTest {
     @Test
     fun `can get albums`() = runTest {
         // given
-        coEvery { getTopAlbumsUseCaseMock() } returns flowOf(ViewState.Success(stubTopAlbums.topAlbums))
+        coEvery { getTopAlbumsUseCaseMock() } returns flowOf(ViewState.Success(stubTopAlbums))
 
         // when
         testSubject.getAlbums()
@@ -37,7 +37,7 @@ class TopAlbumViewModelTest {
         //then
         testSubject.state.test {
             assertEquals(ViewState.Loading, awaitItem())
-            assertEquals(ViewState.Success(entries = stubTopAlbums.topAlbums), awaitItem())
+            assertEquals(ViewState.Success(stubTopAlbums), awaitItem())
         }
     }
 
@@ -59,8 +59,7 @@ class TopAlbumViewModelTest {
     @Test
     fun `can return error state when top albums returns empty list`() = runTest {
         // given
-        val emptyTopAlbumsStub = stubTopAlbums.copy(topAlbums = listOf())
-        coEvery { getTopAlbumsUseCaseMock() } returns flowOf(ViewState.Success(emptyTopAlbumsStub.topAlbums))
+        coEvery { getTopAlbumsUseCaseMock() } returns flowOf(ViewState.Success(listOf()))
 
         // when
         testSubject.getAlbums()
@@ -70,5 +69,15 @@ class TopAlbumViewModelTest {
             assertEquals(ViewState.Loading, awaitItem())
             assertEquals(ViewState.Error, awaitItem())
         }
+    }
+
+    companion object {
+        private val topAlbum = TopAlbum(
+            name = "Test Album",
+            artist = "Test Artist",
+            releaseDate = "2023-10-20T00:00:00-07:00",
+            imageUrl = "https://example.com/image.jpg",
+            id = "1713845538",
+        )
     }
 }

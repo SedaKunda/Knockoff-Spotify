@@ -14,6 +14,11 @@ class GetAlbumDetailsUseCase @Inject constructor(
     operator fun invoke(id: String) = flow {
         emit(ViewState.Loading)
         val albumDetails = repository.getAlbumDetails(id)
+        if (albumDetails == null) {
+            emit(ViewState.Error)
+            Log.e("GetAlbumDetailsUseCase", "Album details is empty")
+            return@flow
+        }
         emit(ViewState.Success(albumDetails))
     }.catch { exception ->
         emit(ViewState.Error)

@@ -17,14 +17,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.knockoffspotify.R
-import com.example.knockoffspotify.data.model.TopAlbum
-import com.example.knockoffspotify.utils.extractImage
-import com.example.knockoffspotify.utils.toReadableDate
+import com.example.knockoffspotify.domain.model.TopAlbum
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,7 +42,7 @@ fun TopAlbumCard(
             containerColor = MaterialTheme.colorScheme.onPrimary,
             contentColor = MaterialTheme.colorScheme.onSecondaryContainer
         ),
-        onClick = { onAlbumCardClicked(topAlbum.id.attributes.imId) },
+        onClick = { onAlbumCardClicked(topAlbum.id) },
     ) {
         AlbumCardContent(
             topAlbum = topAlbum,
@@ -66,7 +63,7 @@ fun AlbumCardContent(
     if (isGrid) {
         Column(modifier = modifier) {
             AsyncImage(
-                model = topAlbum.image.extractImage(),
+                model = topAlbum.imageUrl,
                 modifier = Modifier
                     .height(100.dp)
                     .padding(4.dp),
@@ -76,14 +73,14 @@ fun AlbumCardContent(
                 contentScale = contentScale
             )
             Text(
-                text = topAlbum.name.label,
+                text = topAlbum.name,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.padding(top = 8.dp),
                 style = MaterialTheme.typography.titleSmall
             )
             Text(
-                text = topAlbum.artist.label,
+                text = topAlbum.artist,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.padding(top = 4.dp),
@@ -93,7 +90,7 @@ fun AlbumCardContent(
     } else {
         Row(verticalAlignment = Alignment.CenterVertically) {
             AsyncImage(
-                model = topAlbum.image.extractImage(),
+                model = topAlbum.imageUrl,
                 modifier = Modifier
                     .padding(8.dp)
                     .testTag("RowItem"),
@@ -104,21 +101,19 @@ fun AlbumCardContent(
             )
             Column {
                 Text(
-                    text = topAlbum.name.label,
+                    text = topAlbum.name,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.padding(top = 8.dp, end = 16.dp),
                     style = MaterialTheme.typography.titleMedium
                 )
                 Text(
-                    text = topAlbum.artist.label,
+                    text = topAlbum.artist,
                     modifier = Modifier.padding(top = 4.dp),
                     style = MaterialTheme.typography.bodyLarge
                 )
                 Text(
-                    text = topAlbum.releaseDate.label.toReadableDate(
-                        conversionErrorMessage = stringResource(R.string.unknown_release_date)
-                    ),
+                    text = topAlbum.releaseDate,
                     modifier = Modifier.padding(top = 4.dp, bottom = 8.dp),
                     style = MaterialTheme.typography.bodySmall
                 )

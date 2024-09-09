@@ -1,10 +1,10 @@
 package com.example.knockoffspotify.domain.repository
 
-import com.example.knockoffspotify.data.model.Album
-import com.example.knockoffspotify.data.model.TopAlbum
+import com.example.knockoffspotify.domain.model.Album
+import com.example.knockoffspotify.domain.model.TopAlbum
 
 interface AlbumsRepository {
     suspend fun getTopAlbums(): List<TopAlbum>
 
-    suspend fun getAlbumDetails(id: String): Album
+    suspend fun getAlbumDetails(id: String): Album?
 }
