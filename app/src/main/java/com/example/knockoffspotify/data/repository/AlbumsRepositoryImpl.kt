@@ -35,8 +35,8 @@ class AlbumsRepositoryImpl @Inject constructor(
 
 internal fun SongApi.toSongDomain(): Song {
     return Song(
-        trackName = trackName ?: "",
-        artistName = artistName ?: "",
+        trackName = trackName ?: "Unknown Track",
+        artistName = artistName ?: "Unknown Artist",
         primaryGenreName = primaryGenreName ?: "",
         collectionExplicitness = collectionExplicitness ?: "",
         artwork = artworkUrl100 ?: artworkUrl60 ?: artworkUrl30 ?: ""

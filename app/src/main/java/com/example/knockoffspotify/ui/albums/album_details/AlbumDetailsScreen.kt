@@ -21,14 +21,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import coil.compose.AsyncImage
-import com.example.knockoffspotify.R
 import com.example.knockoffspotify.domain.model.Album
 import com.example.knockoffspotify.domain.model.Song
 import com.example.knockoffspotify.ui.components.LoadingItem
@@ -124,8 +122,8 @@ fun SongCard(song: Song) {
             contentColor = MaterialTheme.colorScheme.onSecondaryContainer
         )
     ) {
-        Text(text = song.trackName ?: stringResource(R.string.unknown_track), style = MaterialTheme.typography.headlineSmall)
-        Text(text = song.artistName ?: stringResource(R.string.unknown_artist), style = MaterialTheme.typography.bodyMedium)
+        Text(text = song.trackName, style = MaterialTheme.typography.headlineSmall)
+        Text(text = song.artistName, style = MaterialTheme.typography.bodyMedium)
     }
 }
 
