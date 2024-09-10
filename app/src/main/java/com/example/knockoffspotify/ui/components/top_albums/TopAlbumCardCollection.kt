@@ -1,8 +1,6 @@
 package com.example.knockoffspotify.ui.components.top_albums
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -17,12 +15,8 @@ fun TopAlbumCardCollection(
     isList: Boolean,
     onAlbumCardClicked: (String) -> Unit,
 ) {
-    AnimatedVisibility(
-        visible = true,
-        enter = fadeIn(),
-        exit = fadeOut(),
-    ) {
-        if (isList) {
+    Crossfade(targetState = isList, label = "List to Grid Transition") { showList ->
+        if (showList) {
             LazyColumn {
                 items(topAlbums) { album ->
                     TopAlbumCard(album, onAlbumCardClicked, isGrid = false)
