@@ -33,6 +33,7 @@ class TopAlbumScreenTest : BaseUiTest() {
             every { state } returns MutableStateFlow(
                 mockk<ViewState.Loading>()
             )
+            every { searchQuery } returns MutableStateFlow("")
         }
         composeTestRule.setContent {
             TopAlbumsScreen(topAlbumsViewModel) {}
@@ -46,6 +47,7 @@ class TopAlbumScreenTest : BaseUiTest() {
             every { state } returns MutableStateFlow(
                 ViewState.Success(entries = stubDatasourceEntries)
             )
+            every { searchQuery } returns MutableStateFlow("")
         }
         composeTestRule.setContent {
             TopAlbumsScreen(topAlbumsViewModel) {}
@@ -56,9 +58,8 @@ class TopAlbumScreenTest : BaseUiTest() {
     @Test
     fun checkErrorIsDisplayed() {
         val topAlbumsViewModel = mockk<TopAlbumsViewModel>(relaxUnitFun = true) {
-            every { state } returns MutableStateFlow(
-                ViewState.Error
-            )
+            every { state } returns MutableStateFlow(ViewState.Error)
+            every { searchQuery } returns MutableStateFlow("")
         }
         composeTestRule.setContent {
             TopAlbumsScreen(topAlbumsViewModel) {}
@@ -72,6 +73,7 @@ class TopAlbumScreenTest : BaseUiTest() {
             every { state } returns MutableStateFlow(
                 ViewState.Success(entries = stubDatasourceEntries)
             )
+            every { searchQuery } returns MutableStateFlow("")
         }
         composeTestRule.setContent {
             TopAlbumsScreen(topAlbumsViewModel) {}
@@ -86,6 +88,7 @@ class TopAlbumScreenTest : BaseUiTest() {
             every { state } returns MutableStateFlow(
                 ViewState.Success(entries = stubDatasourceEntries)
             )
+            every { searchQuery } returns MutableStateFlow("")
         }
         composeTestRule.setContent {
             TopAlbumsScreen(topAlbumsViewModel) {}
@@ -106,6 +109,7 @@ class TopAlbumScreenTest : BaseUiTest() {
             every { state } returns MutableStateFlow(
                 ViewState.Success(entries = stubDatasourceEntries)
             )
+            every { searchQuery } returns MutableStateFlow("")
         }
         composeTestRule.setContent {
             TopAlbumsScreen(topAlbumsViewModel) {}
@@ -127,6 +131,7 @@ class TopAlbumScreenTest : BaseUiTest() {
             every { state } returns MutableStateFlow(
                 ViewState.Success(entries = stubDatasourceEntries)
             )
+            every { searchQuery } returns MutableStateFlow("")
         }
         val restorationTester = StateRestorationTester(composeTestRule)
 

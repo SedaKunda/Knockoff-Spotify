@@ -26,16 +26,17 @@ fun TopAlbumsScreen(
     topAlbumsViewModel: TopAlbumsViewModel = hiltViewModel(),
     onAlbumCardClicked: (String) -> Unit
 ) {
-    val result: ViewState<List<TopAlbum>> = topAlbumsViewModel.state.collectAsStateWithLifecycle().value
+    val result: ViewState<List<TopAlbum>> =
+        topAlbumsViewModel.state.collectAsStateWithLifecycle().value
+    val searchQuery by topAlbumsViewModel.searchQuery.collectAsStateWithLifecycle()
     var isList by rememberSaveable { mutableStateOf(true) }
-    var searchQuery by rememberSaveable { mutableStateOf("") }
 
     Scaffold(
         topBar = {
             HomeAppBar(
                 isList = isList,
                 onLayoutChangeRequested = { isList = !isList },
-                onSearchQueryChanged = { searchQuery = it },
+                onSearchQueryChanged = topAlbumsViewModel::onSearchQueryChanged,
                 searchQuery = searchQuery
             )
         },
@@ -43,7 +44,6 @@ fun TopAlbumsScreen(
             TopAlbumsContent(
                 result = result,
                 isList = isList,
-                searchQuery = searchQuery,
                 onAlbumCardClicked = onAlbumCardClicked,
                 padding = padding
             )
@@ -55,7 +55,6 @@ fun TopAlbumsScreen(
 fun TopAlbumsContent(
     result: ViewState<List<TopAlbum>>,
     isList: Boolean,
-    searchQuery: String,
     onAlbumCardClicked: (String) -> Unit,
     padding: PaddingValues
 ) {
@@ -68,13 +67,11 @@ fun TopAlbumsContent(
         when (result) {
             ViewState.Error -> DefaultErrorScreen(errorMessage = "Failed to load albums")
             ViewState.Loading -> LoadingItem()
-            is ViewState.Success -> {
-                val filteredAlbums = result.entries.filter { album ->
-                    album.name.contains(searchQuery, ignoreCase = true)
-                }
-                TopAlbumCardCollection(topAlbums = filteredAlbums, isList = isList, onAlbumCardClicked)
-            }
+            is ViewState.Success -> TopAlbumCardCollection(
+                topAlbums = result.entries,
+                isList = isList,
+                onAlbumCardClicked
+            )
         }
     }
 }
-

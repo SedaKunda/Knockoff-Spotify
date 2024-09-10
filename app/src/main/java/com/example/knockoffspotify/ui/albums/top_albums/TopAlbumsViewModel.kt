@@ -17,8 +17,14 @@ import javax.inject.Inject
 class TopAlbumsViewModel @Inject constructor(
     val getTopAlbumsUseCase: GetTopAlbumsUseCase,
 ) : ViewModel() {
+
+    private var allAlbums: List<TopAlbum> = emptyList()
+
     private val _state = MutableStateFlow<ViewState<List<TopAlbum>>>(ViewState.Loading)
     val state: StateFlow<ViewState<List<TopAlbum>>> = _state.asStateFlow()
+
+    private val _searchQuery = MutableStateFlow("")
+    val searchQuery = _searchQuery.asStateFlow()
 
     init {
         getAlbums()
@@ -26,14 +32,27 @@ class TopAlbumsViewModel @Inject constructor(
 
     fun getAlbums() {
         viewModelScope.launch {
-            getTopAlbumsUseCase()
-                .collect { viewState ->
-                    _state.value = when (viewState) {
-                        Result.Loading -> ViewState.Loading
-                        is Result.Success -> ViewState.Success(entries = viewState.data)
-                        is Result.Error -> ViewState.Error
+            getTopAlbumsUseCase().collect { viewState ->
+                _state.value = when (viewState) {
+                    Result.Loading -> ViewState.Loading
+                    is Result.Success -> {
+                        allAlbums = viewState.data
+                        ViewState.Success(entries = filterAlbums())
                     }
+                    is Result.Error -> ViewState.Error
                 }
+            }
+        }
+    }
+
+    fun onSearchQueryChanged(query: String) {
+        _searchQuery.value = query
+        _state.value = ViewState.Success(entries = filterAlbums())
+    }
+
+    private fun filterAlbums(): List<TopAlbum> {
+        return allAlbums.filter { album ->
+            album.name.contains(_searchQuery.value, ignoreCase = true)
         }
     }
 }
