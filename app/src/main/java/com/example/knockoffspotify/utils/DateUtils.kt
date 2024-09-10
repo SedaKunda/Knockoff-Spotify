@@ -5,6 +5,11 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.Locale
 
+/**
+ * Checks if the string is a valid date and converts it to a readable format.
+ * @param conversionErrorMessage: The message to display if the conversion fails.
+ * @return The date in a readable format or the conversion error message.
+ */
 @SuppressLint("ConstantLocale")
 val locale: Locale = Locale.getDefault()
 

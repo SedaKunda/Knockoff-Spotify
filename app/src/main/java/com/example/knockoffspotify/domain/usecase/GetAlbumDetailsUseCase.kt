@@ -8,6 +8,11 @@ import kotlinx.coroutines.flow.flow
 import java.io.IOException
 import javax.inject.Inject
 
+/**
+ * Use case to get album details
+ * @param repository: The repository to fetch the data from.
+ * @return A flow of ViewState that contains the album details or an error.
+ */
 class GetAlbumDetailsUseCase @Inject constructor(
     private val repository: AlbumsRepository
 ) {

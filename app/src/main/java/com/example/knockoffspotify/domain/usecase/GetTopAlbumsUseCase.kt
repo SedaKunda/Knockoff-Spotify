@@ -11,6 +11,11 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
+/**
+ * Use case to get the top albums
+ * @param repository the repository to get the top albums
+ * @return a flow of the top albums with the current state of the request or an error
+ */
 class GetTopAlbumsUseCase @Inject constructor(
     private val repository: AlbumsRepository
 ) {
