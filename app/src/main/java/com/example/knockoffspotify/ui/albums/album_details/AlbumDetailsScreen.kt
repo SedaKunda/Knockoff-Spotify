@@ -99,6 +99,7 @@ fun AlbumCardHeader(imageUrl: String) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
+            .testTag("AlbumCardHeader")
     ) {
         AsyncImage(
             model = generateImageURL(imageUrl, 700, 700),
