@@ -16,16 +16,22 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import com.example.knockoffspotify.R
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun HomeAppBar(
     isList: Boolean,
@@ -35,23 +41,31 @@ fun HomeAppBar(
     modifier: Modifier = Modifier,
 ) {
     var searchMode by rememberSaveable { mutableStateOf(false) }
+    val focusRequester = remember { FocusRequester() }
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     TopAppBar(
         title = {
             if (searchMode) {
                 TextField(
-                    value = searchQuery, onValueChange = {
+                    value = searchQuery,
+                    onValueChange = {
                         onSearchQueryChanged(it)
                     },
                     placeholder = { Text(stringResource(R.string.search)) },
-                    modifier = Modifier.testTag("SearchTextField"),
+                    modifier = Modifier
+                        .testTag("SearchTextField")
+                        .focusRequester(focusRequester),
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
                         unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer
                     ),
                 )
-            }
-            else {
+                LaunchedEffect(Unit) {
+                    focusRequester.requestFocus()
+                    keyboardController?.show()
+                }
+            } else {
                 Text(stringResource(R.string.top_100_albums))
             }
         },
