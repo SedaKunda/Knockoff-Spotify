@@ -20,6 +20,10 @@ class TopAlbumsViewModel @Inject constructor(
     private val _state = MutableStateFlow<ViewState<List<TopAlbum>>>(ViewState.Loading)
     val state: StateFlow<ViewState<List<TopAlbum>>> = _state.asStateFlow()
 
+    init {
+        getAlbums()
+    }
+
     fun getAlbums() {
         viewModelScope.launch {
             getTopAlbumsUseCase()

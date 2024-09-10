@@ -25,12 +25,11 @@ class TopAlbumViewModelTest {
     private val stubTopAlbums = listOf(topAlbum)
     private val getTopAlbumsUseCaseMock = mockk<GetTopAlbumsUseCase>()
 
-    private val testSubject = TopAlbumsViewModel(getTopAlbumsUseCaseMock)
-
     @Test
     fun `can get albums`() = runTest {
         // given
         coEvery { getTopAlbumsUseCaseMock() } returns flowOf(Result.Success(stubTopAlbums))
+        val testSubject = TopAlbumsViewModel(getTopAlbumsUseCaseMock)
 
         // when
         testSubject.getAlbums()
@@ -46,6 +45,7 @@ class TopAlbumViewModelTest {
     fun `can return error state when GetTopAlbumsUseCase returns Error`() = runTest {
         // given
         coEvery { getTopAlbumsUseCaseMock() } returns flowOf(Result.Error(Exception()))
+        val testSubject = TopAlbumsViewModel(getTopAlbumsUseCaseMock)
 
         // when
         testSubject.getAlbums()
@@ -61,6 +61,7 @@ class TopAlbumViewModelTest {
     fun `can return success state when top albums returns empty list`() = runTest {
         // given
         coEvery { getTopAlbumsUseCaseMock() } returns flowOf(Result.Success(listOf()))
+        val testSubject = TopAlbumsViewModel(getTopAlbumsUseCaseMock)
 
         // when
         testSubject.getAlbums()
