@@ -23,11 +23,11 @@ class AlbumDetailsViewModel @Inject constructor(
     fun getAlbumDetails(id: String) {
         viewModelScope.launch {
             getAlbumDetailsUseCase(id)
-                .collect { viewState ->
-                    _state.value = when (viewState) {
+                .collect { result ->
+                    _state.value = when (result) {
                         is Result.Error -> ViewState.Error
                         Result.Loading -> ViewState.Loading
-                        is Result.Success -> ViewState.Success(viewState.data)
+                        is Result.Success -> ViewState.Success(result.data)
                     }
                 }
         }

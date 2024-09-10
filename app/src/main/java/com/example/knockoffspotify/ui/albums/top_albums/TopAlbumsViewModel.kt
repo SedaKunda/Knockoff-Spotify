@@ -32,11 +32,11 @@ class TopAlbumsViewModel @Inject constructor(
 
     fun getAlbums() {
         viewModelScope.launch {
-            getTopAlbumsUseCase().collect { viewState ->
-                _state.value = when (viewState) {
+            getTopAlbumsUseCase().collect { result ->
+                _state.value = when (result) {
                     Result.Loading -> ViewState.Loading
                     is Result.Success -> {
-                        allAlbums = viewState.data
+                        allAlbums = result.data
                         ViewState.Success(entries = filterAlbums())
                     }
                     is Result.Error -> ViewState.Error

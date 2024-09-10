@@ -22,7 +22,7 @@ This Kotlin app needs to display the top 100 songs based on the iTunes API. The 
 - **Retrofit**: HTTP client for API requests
 - **Kotlin Coroutines**: Asynchronous programming
 - **Paging Library**: Efficiently loads large data sets (branch: paging-library)
-- **Target SDK**: 32
+- **Target SDK**: 34
 
 ## Testing Strategy
 Testing is done following the [testing pyramid](https://martinfowler.com/articles/practical-test-pyramid.html#TheTestPyramid) with a [given, when, then](https://martinfowler.com/bliki/GivenWhenThen.html) style.
