@@ -74,9 +74,7 @@ fun AlbumDetailsContent(
         when (result) {
             ViewState.Error -> DefaultErrorScreen(errorMessage = "Failed to load selected album")
             ViewState.Loading -> LoadingItem()
-            is ViewState.Success -> {
-                AlbumCard(album = result.entries)
-            }
+            is ViewState.Success -> AlbumCard(album = result.entries)
         }
     }
 }

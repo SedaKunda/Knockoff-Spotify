@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.knockoffspotify.domain.model.TopAlbum
 import com.example.knockoffspotify.domain.usecase.GetTopAlbumsUseCase
+import com.example.knockoffspotify.utils.Result
 import com.example.knockoffspotify.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,12 +25,9 @@ class TopAlbumsViewModel @Inject constructor(
             getTopAlbumsUseCase()
                 .collect { viewState ->
                     _state.value = when (viewState) {
-                        ViewState.Error -> ViewState.Error
-                        ViewState.Loading -> ViewState.Loading
-                        is ViewState.Success -> {
-                            if (viewState.entries.isNotEmpty()) ViewState.Success(entries = viewState.entries)
-                            else ViewState.Error
-                        }
+                        Result.Loading -> ViewState.Loading
+                        is Result.Success -> ViewState.Success(entries = viewState.data)
+                        is Result.Error -> ViewState.Error
                     }
                 }
         }

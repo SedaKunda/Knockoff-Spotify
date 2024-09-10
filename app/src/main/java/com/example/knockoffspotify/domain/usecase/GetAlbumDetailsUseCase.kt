@@ -2,7 +2,7 @@ package com.example.knockoffspotify.domain.usecase
 
 import android.util.Log
 import com.example.knockoffspotify.domain.repository.AlbumsRepository
-import com.example.knockoffspotify.utils.ViewState
+import com.example.knockoffspotify.utils.Result
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
 import java.io.IOException
@@ -17,16 +17,16 @@ class GetAlbumDetailsUseCase @Inject constructor(
     private val repository: AlbumsRepository
 ) {
     operator fun invoke(id: String) = flow {
-        emit(ViewState.Loading)
+        emit(Result.Loading)
         val albumDetails = repository.getAlbumDetails(id)
         if (albumDetails == null) {
-            emit(ViewState.Error)
+            emit(Result.Error(Exception("Album details is empty")))
             Log.e("GetAlbumDetailsUseCase", "Album details is empty")
             return@flow
         }
-        emit(ViewState.Success(albumDetails))
+        emit(Result.Success(albumDetails))
     }.catch { exception ->
-        emit(ViewState.Error)
+        emit(Result.Error(exception))
         when (exception) {
             is IOException -> Log.e("GetAlbumDetailsUseCase", "Network error", exception)
             else -> Log.e("GetAlbumDetailsUseCase", "Unknown error", exception)

@@ -2,7 +2,7 @@ package com.example.knockoffspotify.domain.usecase
 
 import android.util.Log
 import com.example.knockoffspotify.domain.repository.AlbumsRepository
-import com.example.knockoffspotify.utils.ViewState
+import com.example.knockoffspotify.utils.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
@@ -20,11 +20,11 @@ class GetTopAlbumsUseCase @Inject constructor(
     private val repository: AlbumsRepository
 ) {
     operator fun invoke() = flow {
-        emit(ViewState.Loading)
+        emit(Result.Loading)
         val albums = repository.getTopAlbums()
-        emit(ViewState.Success(albums))
+        emit(Result.Success(albums))
     }.catch { exception ->
-        emit(ViewState.Error)
+        emit(Result.Error(exception))
         when (exception) {
             is IOException -> Log.e("GetTopAlbumsUseCase", "Network error", exception)
             is HttpException -> Log.e("GetTopAlbumsUseCase", "HTTP error", exception)

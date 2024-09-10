@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.knockoffspotify.domain.model.Album
 import com.example.knockoffspotify.domain.usecase.GetAlbumDetailsUseCase
+import com.example.knockoffspotify.utils.Result
 import com.example.knockoffspotify.utils.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,9 +25,9 @@ class AlbumDetailsViewModel @Inject constructor(
             getAlbumDetailsUseCase(id)
                 .collect { viewState ->
                     _state.value = when (viewState) {
-                        ViewState.Error -> ViewState.Error
-                        ViewState.Loading -> ViewState.Loading
-                        is ViewState.Success -> ViewState.Success(viewState.entries)
+                        is Result.Error -> ViewState.Error
+                        Result.Loading -> ViewState.Loading
+                        is Result.Success -> ViewState.Success(viewState.data)
                     }
                 }
         }

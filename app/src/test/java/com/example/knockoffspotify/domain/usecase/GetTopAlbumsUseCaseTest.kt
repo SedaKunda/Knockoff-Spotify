@@ -3,7 +3,7 @@ package com.example.knockoffspotify.domain.usecase
 import app.cash.turbine.test
 import com.example.knockoffspotify.domain.model.TopAlbum
 import com.example.knockoffspotify.domain.repository.AlbumsRepository
-import com.example.knockoffspotify.utils.ViewState
+import com.example.knockoffspotify.utils.Result
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
@@ -32,8 +32,8 @@ class GetTopAlbumsUseCaseTest {
 
         // then
         result.test {
-            assertEquals(ViewState.Loading, awaitItem())
-            assertEquals(ViewState.Success(stubTopAlbums), awaitItem())
+            assertEquals(Result.Loading, awaitItem())
+            assertEquals(Result.Success(stubTopAlbums), awaitItem())
             cancelAndIgnoreRemainingEvents()
         }
     }
@@ -41,8 +41,9 @@ class GetTopAlbumsUseCaseTest {
     @Test
     fun `can emit Error when IOException thrown`() = runTest {
         // given
+        val exception = IOException("Unknown Error occurred")
         mockRepository.apply {
-            coEvery { getTopAlbums() } throws IOException("Network Error occurred")
+            coEvery { getTopAlbums() } throws exception
         }
 
         // when
@@ -50,8 +51,8 @@ class GetTopAlbumsUseCaseTest {
 
         // then
         result.test {
-            assertEquals(ViewState.Loading, awaitItem())
-            assertEquals(ViewState.Error, awaitItem())
+            assertEquals(Result.Loading, awaitItem())
+            assertEquals(Result.Error(exception), awaitItem())
             cancelAndIgnoreRemainingEvents()
         }
     }
@@ -59,8 +60,9 @@ class GetTopAlbumsUseCaseTest {
     @Test
     fun `can emit Error when HttpException thrown`() = runTest {
         // given
+        val exception = HttpException(Response.error<Any>(404, "".toResponseBody()))
         mockRepository.apply {
-            coEvery { getTopAlbums() } throws HttpException(Response.error<Any>(404, "".toResponseBody()))
+            coEvery { getTopAlbums() } throws exception
         }
 
         // when
@@ -68,8 +70,8 @@ class GetTopAlbumsUseCaseTest {
 
         // then
         result.test {
-            assertEquals(ViewState.Loading, awaitItem())
-            assertEquals(ViewState.Error, awaitItem())
+            assertEquals(Result.Loading, awaitItem())
+            assertEquals(Result.Error(exception), awaitItem())
             cancelAndIgnoreRemainingEvents()
         }
     }
@@ -77,8 +79,9 @@ class GetTopAlbumsUseCaseTest {
     @Test
     fun `can emit Error when Exception thrown`() = runTest {
         // given
+        val exception = Exception("Unknown Error occurred")
         mockRepository.apply {
-            coEvery { getTopAlbums() } throws Exception("Unknown Error occurred")
+            coEvery { getTopAlbums() } throws exception
         }
 
         // when
@@ -86,8 +89,8 @@ class GetTopAlbumsUseCaseTest {
 
         // then
         result.test {
-            assertEquals(ViewState.Loading, awaitItem())
-            assertEquals(ViewState.Error, awaitItem())
+            assertEquals(Result.Loading, awaitItem())
+            assertEquals(Result.Error(exception), awaitItem())
             cancelAndIgnoreRemainingEvents()
         }
     }

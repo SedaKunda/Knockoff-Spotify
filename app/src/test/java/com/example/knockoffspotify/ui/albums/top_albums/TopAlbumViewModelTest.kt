@@ -4,6 +4,7 @@ import app.cash.turbine.test
 import com.example.knockoffspotify.domain.model.TopAlbum
 import com.example.knockoffspotify.domain.usecase.GetTopAlbumsUseCase
 import com.example.knockoffspotify.helpers.MainCoroutineRule
+import com.example.knockoffspotify.utils.Result
 import com.example.knockoffspotify.utils.ViewState
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -29,7 +30,7 @@ class TopAlbumViewModelTest {
     @Test
     fun `can get albums`() = runTest {
         // given
-        coEvery { getTopAlbumsUseCaseMock() } returns flowOf(ViewState.Success(stubTopAlbums))
+        coEvery { getTopAlbumsUseCaseMock() } returns flowOf(Result.Success(stubTopAlbums))
 
         // when
         testSubject.getAlbums()
@@ -44,7 +45,7 @@ class TopAlbumViewModelTest {
     @Test
     fun `can return error state when GetTopAlbumsUseCase returns Error`() = runTest {
         // given
-        coEvery { getTopAlbumsUseCaseMock() } returns flowOf(ViewState.Error)
+        coEvery { getTopAlbumsUseCaseMock() } returns flowOf(Result.Error(Exception()))
 
         // when
         testSubject.getAlbums()
@@ -57,9 +58,9 @@ class TopAlbumViewModelTest {
     }
 
     @Test
-    fun `can return error state when top albums returns empty list`() = runTest {
+    fun `can return success state when top albums returns empty list`() = runTest {
         // given
-        coEvery { getTopAlbumsUseCaseMock() } returns flowOf(ViewState.Success(listOf()))
+        coEvery { getTopAlbumsUseCaseMock() } returns flowOf(Result.Success(listOf()))
 
         // when
         testSubject.getAlbums()
@@ -67,7 +68,7 @@ class TopAlbumViewModelTest {
         //then
         testSubject.state.test {
             assertEquals(ViewState.Loading, awaitItem())
-            assertEquals(ViewState.Error, awaitItem())
+            assertEquals(ViewState.Success(listOf<TopAlbum>()), awaitItem())
         }
     }
 

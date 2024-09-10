@@ -5,6 +5,7 @@ import com.example.knockoffspotify.domain.model.Album
 import com.example.knockoffspotify.domain.model.Song
 import com.example.knockoffspotify.domain.usecase.GetAlbumDetailsUseCase
 import com.example.knockoffspotify.helpers.MainCoroutineRule
+import com.example.knockoffspotify.utils.Result
 import com.example.knockoffspotify.utils.ViewState
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -27,7 +28,7 @@ class AlbumDetailsViewModelTest {
     @Test
     fun `can get album details`() = runTest {
         // given
-        coEvery { getAlbumDetailsUseCaseMock("123") } returns flowOf(ViewState.Success(album))
+        coEvery { getAlbumDetailsUseCaseMock("123") } returns flowOf(Result.Success(album))
 
         // when
         testSubject.getAlbumDetails("123")
@@ -42,7 +43,7 @@ class AlbumDetailsViewModelTest {
     @Test
     fun `can return error state when getAlbumDetails returns Error`() = runTest {
         // given
-        coEvery { getAlbumDetailsUseCaseMock("123") } returns flowOf(ViewState.Error)
+        coEvery { getAlbumDetailsUseCaseMock("123") } returns flowOf(Result.Error(Exception()))
 
         // when
         testSubject.getAlbumDetails("123")

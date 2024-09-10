@@ -4,12 +4,13 @@ import app.cash.turbine.test
 import com.example.knockoffspotify.domain.model.Album
 import com.example.knockoffspotify.domain.model.Song
 import com.example.knockoffspotify.domain.repository.AlbumsRepository
-import com.example.knockoffspotify.utils.ViewState
+import com.example.knockoffspotify.utils.Result
 import io.mockk.coEvery
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import java.io.IOException
 
@@ -31,8 +32,8 @@ class GetAlbumDetailsUseCaseTest {
 
         // then
         result.toList().apply {
-            assertEquals(ViewState.Loading, this[0])
-            assertEquals(ViewState.Success(album), this[1])
+            assertEquals(Result.Loading, this[0])
+            assertEquals(Result.Success(album), this[1])
         }
     }
 
@@ -48,8 +49,10 @@ class GetAlbumDetailsUseCaseTest {
 
         // then
         result.test {
-            assertEquals(ViewState.Loading, awaitItem())
-            assertEquals(ViewState.Error, awaitItem())
+            assertEquals(Result.Loading, awaitItem())
+            val errorResult = awaitItem()
+            assertTrue(errorResult is Result.Error)
+            assertEquals("Album details is empty", (errorResult as Result.Error).exception.message)
             cancelAndIgnoreRemainingEvents()
         }
     }
@@ -57,8 +60,9 @@ class GetAlbumDetailsUseCaseTest {
     @Test
     fun `can emit Error when IOException thrown`() = runTest {
         // given
+        val exception = IOException("Network Error occurred")
         mockRepository.apply {
-            coEvery { getAlbumDetails("123") } throws IOException("Network Error occurred")
+            coEvery { getAlbumDetails("123") } throws exception
         }
 
         // when
@@ -66,8 +70,8 @@ class GetAlbumDetailsUseCaseTest {
 
         // then
         result.test {
-            assertEquals(ViewState.Loading, awaitItem())
-            assertEquals(ViewState.Error, awaitItem())
+            assertEquals(Result.Loading, awaitItem())
+            assertEquals(Result.Error(exception), awaitItem())
             cancelAndIgnoreRemainingEvents()
         }
     }
@@ -75,8 +79,9 @@ class GetAlbumDetailsUseCaseTest {
     @Test
     fun `can emit Error when Exception thrown`() = runTest {
         // given
+        val exception = Exception("Unknown Error occurred")
         mockRepository.apply {
-            coEvery { getAlbumDetails("123") } throws Exception("Unknown Error occurred")
+            coEvery { getAlbumDetails("123") } throws exception
         }
 
         // when
@@ -84,8 +89,8 @@ class GetAlbumDetailsUseCaseTest {
 
         // then
         result.test {
-            assertEquals(ViewState.Loading, awaitItem())
-            assertEquals(ViewState.Error, awaitItem())
+            assertEquals(Result.Loading, awaitItem())
+            assertEquals(Result.Error(exception), awaitItem())
             cancelAndIgnoreRemainingEvents()
         }
     }
